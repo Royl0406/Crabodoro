@@ -1,0 +1,17 @@
+//Tab Detector
+//manifest.json
+{
+    "name": "Tab Detector",
+    "description": "Informs you what tab you're currently on",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_icon": "hewwo.png",
+        "default_popup": "main.html"
+    },
+    "permissions": ["tabs", "notifications"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "options_page": "main.html"
+}
