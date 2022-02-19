@@ -1,5 +1,3 @@
-//Tab Detector
-//manifest.json
 {
     "name": "Tab Detector",
     "description": "Informs you what tab you're currently on",
@@ -9,7 +7,7 @@
         "default_icon": "hewwo.png",
         "default_popup": "main.html"
     },
-    "permissions": ["tabs", "notifications", "scripting"],
+    "permissions": ["tabs", "notifications", "scripting", "storage"],
     "host_permissions": ["https://www.youtube.com/*"],
     "background": {
         "service_worker": "background.js"
