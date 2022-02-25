@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+     .button-box {
+      background-color: #51A388;
+      cursor: pointer;
+    }
+
+    body {
+      background-color: rgba(235, 138, 24, 0.36);
+      width: 529px;
+      height: 448px;
+    }
+
+    .gamemode-name {
+      color: white;
+      text-align: center;
+      padding-top: 15px;
+      /*edit later*/
+      /*doesn't look as good*/
+      -webkit-text-stroke: 0.4px black;
+    }
+
+    .game-info {
+      font-size: 14px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: bold;
+      color: white;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .column {
+      display: flex;
+      flex: 1 1 auto;
+      padding: 10px;
+    }
+
+    .card-row {
+      display: flex;
+      flex-direction: row;
+    }
+  </style>
+  <script src="utilities.js"></script>
+  <script src="pomodoro.js"></script>
+</head>
+
+<body>
+  <!-- Outer green box -->
+  <div class="card-row">
+    <div class="button-box" id="card-unrated">
+      <div class="head">
+        <h1 class="gamemode-name">Study Time</h1>
+      </div>
+      <div>
+        <img src="chicken.png" alt="robot chicken" />
+      </div>
+
+      <div class="game-info">
+        <div class="row">
+          <div class="column" id="timer">40:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

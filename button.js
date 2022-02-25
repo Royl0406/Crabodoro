@@ -23,7 +23,7 @@ window.onload = () => {
   });
 
   myButton.onclick = () => {
-    var location = "warning-tab.html"
+    var location = "pomodoro.html"
     enabled = !enabled;
     console.log("button pressed");
     chrome.storage.local.set({enabled:enabled});
