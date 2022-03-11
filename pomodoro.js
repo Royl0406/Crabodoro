@@ -31,6 +31,8 @@ window.onload = () => {
     //coin count tracker
     let coinCount = 0;
     console.log("start time:" + startTime);
+
+    let prevTime = (new Date()).getTime();
     setInterval(() => {
         let nowTime = (new Date()).getTime();
         console.log(`nowTime ${nowTime}`);
@@ -42,12 +44,13 @@ window.onload = () => {
         console.log(`reamainingTime ${remainingTime}`);
 
         if (isOnTask()) {
-            coinCount += calculateCoinEarned(elapsed, COIN_RATE);
+            coinCount += calculateCoinEarned(nowTime - prevTime, COIN_RATE);
         }
 
         //update text in html file
         coinDiv.textContent = coinCount;
         timerDiv.textContent = remainingTime / MILLISECONDS_PER_SECOND / SECONDS_PER_MINUTE;
+        prevTime = nowTime;
     }, 1000);
 
 }
