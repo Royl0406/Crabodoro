@@ -15,10 +15,13 @@ function showScreenBlocker() {
     });
 }
 
-function showBlockerIfDistracted(url) {
+function urlChangeHandler(url) {
+   let isDistracted = false;
    if (isUrlDistracting(url)) {
       showScreenBlocker();
+      isDistracted = true;
    }
+   chrome.storage.local.set({isDistracted});
 }
 
 chrome.storage.local.get('enabled', data => {
@@ -29,14 +32,14 @@ chrome.storage.local.get('enabled', data => {
    chrome.tabs.onActivated.addListener( function(activeInfo) {
       chrome.tabs.get(activeInfo.tabId, function(tab) {
          let currentUrl = tab.url;
-         showBlockerIfDistracted(currentUrl);
+         urlChangeHandler(currentUrl);
       });
    });
    
    chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
       if (tab.active && change.url) {  
          let newUrl = change.url;  
-         showBlockerIfDistracted(newUrl);
+         urlChangeHandler(newUrl);
       }
    });
 });
