@@ -28,6 +28,8 @@ window.onload = () => {
     console.log("button pressed");
     chrome.storage.local.set({enabled:enabled});
     changePopupLocation(location);
+
+    chrome.runtime.sendMessage("start button clicked");
   };
 }
 

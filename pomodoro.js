@@ -1,16 +1,7 @@
 let isOnTask = () => {
-    //isDistractingPage(fetchWebpage);
-    //TODO: write the function
-    return true;
+    return chrome.storage.local.get(['isDistracted']);
 }
 
-let fetchWebpage = () => {
-
-}
-
-let isDistractingPage = () => {
-
-}
 
 let calculateCoinEarned = (elapsed, rate) => {
     return elapsed * rate;
