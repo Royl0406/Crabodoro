@@ -84,10 +84,13 @@ let startGame = () => {
       }
 
       //update text in html file
+      chrome.storage.local.set({coinCount});
+      chrome.storage.local.set({remainingTime});
+      //log coin and time in 
       console.log("coin count: " + coinCount);
       console.log("time remaining: " + remainingTime / MILLISECONDS_PER_SECOND / SECONDS_PER_MINUTE);
       prevTime = nowTime;
-   }, 1000);
+   }, 100);
 }
 
 chrome.runtime.onMessage.addListener(
