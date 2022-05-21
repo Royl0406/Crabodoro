@@ -45,8 +45,10 @@ chrome.storage.local.get('enabled', data => {
    });
 });
 
-let isOnTask = () => {
-   return chrome.storage.local.get(['isDistracted']);
+let isOnTask = async () => {
+   let result = await chrome.storage.local.get(['isDistracted']);
+   console.log(result);
+   return !result.isDistracted;
 }
 
 
@@ -66,29 +68,24 @@ let startGame = () => {
    let startTime = (new Date()).getTime();
    //coin count tracker
    let coinCount = 0;
-   console.log("start time:" + startTime);
 
    let prevTime = (new Date()).getTime();
    setInterval(() => {
       let nowTime = (new Date()).getTime();
-      console.log(`nowTime ${nowTime}`);
       //if current time - start time = 1 second then update
       let elapsed = nowTime - startTime;
-      console.log(`elapsed ${elapsed}`);
 
       let remainingTime = TOTAL_TIME_MS - elapsed;
-      console.log(`reamainingTime ${remainingTime}`);
-
-      if (isOnTask()) {
+      console.log("checking if on task");
+      //BROKEN!!!!!!!!!!
+      if (await isOnTask()) {
          coinCount += calculateCoinEarned(nowTime - prevTime, COIN_RATE);
       }
 
       //update text in html file
       chrome.storage.local.set({coinCount});
       chrome.storage.local.set({remainingTime});
-      //log coin and time in 
-      console.log("coin count: " + coinCount);
-      console.log("time remaining: " + remainingTime / MILLISECONDS_PER_SECOND / SECONDS_PER_MINUTE);
+      
       prevTime = nowTime;
    }, 100);
 }
