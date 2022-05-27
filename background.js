@@ -24,11 +24,20 @@ function urlChangeHandler(url, tabId) {
    chrome.storage.local.set({ isDistracted });
 }
 
-chrome.storage.local.get('enabled', data => {
-   if (!data.enabled) {
-      console.log("Extension off");
-      return;
-   }
+
+
+let isOnTask = async () => {
+   let result = await chrome.storage.local.get(['isDistracted']);
+   
+   return !result.isDistracted;
+}
+
+
+let calculateCoinEarned = (elapsed, rate) => {
+   return elapsed * rate;
+}
+
+function addTabListeners() {
    chrome.tabs.onActivated.addListener(function (activeInfo) {
       chrome.tabs.get(activeInfo.tabId, function (tab) {
          let currentUrl = tab.url;
@@ -43,20 +52,11 @@ chrome.storage.local.get('enabled', data => {
          urlChangeHandler(newUrl, tabId);
       }
    });
-});
-
-let isOnTask = async () => {
-   let result = await chrome.storage.local.get(['isDistracted']);
-   console.log(result);
-   return !result.isDistracted;
-}
-
-
-let calculateCoinEarned = (elapsed, rate) => {
-   return elapsed * rate;
 }
 
 let startGame = () => {
+   addTabListeners();
+
    const MILLISECONDS_PER_SECOND = 1000;
    const SECONDS_PER_MINUTE = 60;
    const SESSION_TIME_MINUTES = 40;
@@ -70,17 +70,18 @@ let startGame = () => {
    let coinCount = 0;
 
    let prevTime = (new Date()).getTime();
-   setInterval(() => {
+   setInterval(async () => {
       let nowTime = (new Date()).getTime();
       //if current time - start time = 1 second then update
       let elapsed = nowTime - startTime;
 
       let remainingTime = TOTAL_TIME_MS - elapsed;
-      console.log("checking if on task");
-      //BROKEN!!!!!!!!!!
+      
+      
       if (await isOnTask()) {
          coinCount += calculateCoinEarned(nowTime - prevTime, COIN_RATE);
       }
+      
 
       //update text in html file
       chrome.storage.local.set({coinCount});
@@ -95,6 +96,7 @@ chrome.runtime.onMessage.addListener(
       if (request === "start button clicked") {
          startGame();
       }
+      //Message handler must call a response callback
       sendResponse();
    }
 );
