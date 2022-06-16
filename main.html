@@ -12,6 +12,34 @@
       background-color: #4ef34b;
     }
 
+    .button-text {
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .navigation-button {
+      background-color: #E33737;
+      opacity: 0.6;
+    }
+
+    /*absolute positions the button to the top right */
+    #mybutton {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .navigation-button:hover {
+      opacity: 0.8;
+    }
+
     body {
       background-color: rgba(235, 138, 24, 0.36);
       width: 529px;
@@ -36,6 +64,11 @@
       margin-right: 5%;
     }
 
+    .gamemode-boxes {
+      display: flex;
+      width: 80%
+    }
+
     .row {
       display: flex;
       flex-direction: row;
@@ -45,14 +78,16 @@
     .column {
       display: flex;
       flex: 1 1 auto;
+      flex-direction: column;
+    }
+
+    .small-padding {
       padding: 10px;
     }
 
-    .card-row {
-      display: flex;
-      flex-direction: row;
+    .row-header {
+      justify-content: end;
     }
-
   </style>
   <script src="utilities.js"></script>
   <script src="button.js"></script>
@@ -60,7 +95,10 @@
 
 <body>
   <!-- Outer green box -->
-  <div class="card-row">
+  <div class="gamemode-boxes">
+    <div class="row row-header">
+      <button id="mybutton" class="button-text navigation-button">Crab Space</button>
+    </div>
     <div class="button-box" id="card-unrated">
       <div class="head">
         <h1 class="gamemode-name">Unrated</h1>
