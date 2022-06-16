@@ -10,10 +10,21 @@ setInterval(() => {
 
 function displayCoinCount(coinCount) {
     let divCoinCount = document.getElementById("coin-count");
-    divCoinCount.textContent = coinCount;
+    divCoinCount.textContent = "Coin: " + Math.round(coinCount);
 }
 
 function displayRemainingTime(remainingTime) {
     let divRemainingTime = document.getElementById("remaining-time");
-    divRemainingTime.textContent = remainingTime;
+    divRemainingTime.textContent = Math.ceil(displayMinutes(remainingTime)) + " : " + Math.round(displaySeconds(remainingTime));
+}
+
+function displayMinutes(remainingTime) {
+    return (remainingTime / 1000)  / 60;
+}
+
+function displaySeconds(remainingTime) {
+    if((remainingTime / 1000) % 60 >= 59) {
+        return 59
+    }
+    return (remainingTime / 1000) % 60;
 }
