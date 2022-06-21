@@ -2,6 +2,9 @@
 <html>
 
 <head>
+  <script src="https://browser.sentry-cdn.com/7.2.0/bundle.min.js"
+    integrity="sha384-yvW0r7aI4VkwNfs/eOzYsODvXkNVQon3MBtow61jPf/pOR166EPvTSNBr9nG3C3y"
+    crossorigin="anonymous"></script>
   <style>
     .button-box {
       background-color: #50F64D;
@@ -30,8 +33,7 @@
     }
 
     /*absolute positions the button to the top right */
-    #mybutton {
-      position: absolute;
+    button#crab-space {
       top: 0;
       right: 0;
     }
@@ -85,7 +87,7 @@
       padding: 10px;
     }
 
-    .row-header {
+    div.row-header {
       justify-content: end;
     }
   </style>
@@ -94,11 +96,31 @@
 </head>
 
 <body>
-  <!-- Outer green box -->
+  <div class="row row-header">
+    <button id="crab-space" class="button-text navigation-button small-padding">Crab Space</button>
+  </div>
   <div class="gamemode-boxes">
-    <div class="row row-header">
-      <button id="mybutton" class="button-text navigation-button small-padding">Crab Space</button>
+    <div class="button-box" id="card-unrated">
+      <div class="head">
+        <h1 class="gamemode-name">Unrated</h1>
+      </div>
+      <div>
+        <img src="chicken.png" alt="robot chicken" />
+      </div>
+
+      <div class="game-info">
+        <div class="row">
+          <div class="column">Study time:</div>
+          <div class="column">40 min</div>
+        </div>
+
+        <div class="row">
+          <div class="column">Game time:</div>
+          <div class="column">10-15 min</div>
+        </div>
+      </div>
     </div>
+
     <div class="button-box" id="card-unrated">
       <div class="head">
         <h1 class="gamemode-name">Unrated</h1>

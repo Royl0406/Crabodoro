@@ -1,5 +1,15 @@
 //Tab Detector
 //background.js
+Sentry.init({
+   dsn: "https://3598de70d01e4f2e8d56942c3f748f40@o1294946.ingest.sentry.io/6519807",
+   // this assumes your build process replaces `process.env.npm_package_version` with a value
+   integrations: [new BrowserTracing()],
+
+   // Set tracesSampleRate to 1.0 to capture 100%
+   // of transactions for performance monitoring.
+   // We recommend adjusting this value in production
+   tracesSampleRate: 1.0,
+});
 function isUrlDistracting(url) {
    if (url === "https://www.youtube.com/" || url === "https://www.instagram.com/") {
       return true;
@@ -28,7 +38,7 @@ function urlChangeHandler(url, tabId) {
 
 let isOnTask = async () => {
    let result = await chrome.storage.local.get(['isDistracted']);
-   
+
    return !result.isDistracted;
 }
 
@@ -76,17 +86,17 @@ let startGame = () => {
       let elapsed = nowTime - startTime;
 
       let remainingTime = TOTAL_TIME_MS - elapsed;
-      
-      
+
+
       if (await isOnTask()) {
          coinCount += calculateCoinEarned(nowTime - prevTime, COIN_RATE);
       }
-      
+
 
       //update text in html file
-      chrome.storage.local.set({coinCount});
-      chrome.storage.local.set({remainingTime});
-      
+      chrome.storage.local.set({ coinCount });
+      chrome.storage.local.set({ remainingTime });
+
       prevTime = nowTime;
    }, 100);
 }
