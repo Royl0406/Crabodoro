@@ -1,14 +1,3 @@
-Sentry.init({
-    dsn: "https://3598de70d01e4f2e8d56942c3f748f40@o1294946.ingest.sentry.io/6519807",
-    // this assumes your build process replaces `process.env.npm_package_version` with a value
-    integrations: [new BrowserTracing()],
-
-    // Set tracesSampleRate to 1.0 to capture 100%
-    // of transactions for performance monitoring.
-    // We recommend adjusting this value in production
-    tracesSampleRate: 1.0,
-});
-
 window.onerror = function (msg, url, lineNo, columnNo, error) {
     console.log(error);
     console.log(msg);

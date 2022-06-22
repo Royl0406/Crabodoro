@@ -1,15 +1,5 @@
 //Tab Detector
 //background.js
-Sentry.init({
-   dsn: "https://3598de70d01e4f2e8d56942c3f748f40@o1294946.ingest.sentry.io/6519807",
-   // this assumes your build process replaces `process.env.npm_package_version` with a value
-   integrations: [new BrowserTracing()],
-
-   // Set tracesSampleRate to 1.0 to capture 100%
-   // of transactions for performance monitoring.
-   // We recommend adjusting this value in production
-   tracesSampleRate: 1.0,
-});
 function isUrlDistracting(url) {
    if (url === "https://www.youtube.com/" || url === "https://www.instagram.com/") {
       return true;
@@ -76,7 +66,6 @@ let startGame = () => {
 
    // Current time in milliseconds (from the epoch)
    let startTime = (new Date()).getTime();
-   //coin count tracker
    let coinCount = 0;
 
    let prevTime = (new Date()).getTime();
@@ -90,6 +79,9 @@ let startGame = () => {
 
       if (await isOnTask()) {
          coinCount += calculateCoinEarned(nowTime - prevTime, COIN_RATE);
+      }
+      else {
+         coinCount -= calculateCoinEarned(nowTime - prevTime, COIN_RATE);
       }
 
 
