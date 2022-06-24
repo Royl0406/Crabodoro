@@ -1,7 +1,3 @@
-window.onerror = function (msg, url, lineNo, columnNo, error) {
-    console.log(error);
-    console.log(msg);
-}
 startUpdateLoop();
 
 function startUpdateLoop() {
@@ -10,7 +6,6 @@ function startUpdateLoop() {
             displayCoinCount(result.coinCount);
             displayRemainingTime(result.remainingTime);
         });
-        //throw new Error("test error");
     }, 100);
 }
 
@@ -21,7 +16,7 @@ function displayCoinCount(coinCount) {
 
 function displayRemainingTime(remainingTime) {
     let divRemainingTime = document.getElementById("remaining-time");
-    divRemainingTime.textContent = Math.ceil(displayMinutes(remainingTime)) + " : " + Math.round(displaySeconds(remainingTime));
+    divRemainingTime.textContent = Math.floor(displayMinutes(remainingTime)) + " : " + Math.round(displaySeconds(remainingTime));
 }
 
 function displayMinutes(remainingTime) {
