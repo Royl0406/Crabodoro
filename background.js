@@ -80,9 +80,6 @@ let startGame = () => {
       if (await isOnTask()) {
          coinCount += calculateCoinEarned(nowTime - prevTime, COIN_RATE);
       }
-      else {
-         coinCount -= calculateCoinEarned(nowTime - prevTime, COIN_RATE);
-      }
 
 
       //update text in html file
