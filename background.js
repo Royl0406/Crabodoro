@@ -87,7 +87,7 @@ let startGame = () => {
       chrome.storage.local.set({ remainingTime });
 
       prevTime = nowTime;
-   }, 100);
+   }, 1);
 }
 
 chrome.runtime.onMessage.addListener(
