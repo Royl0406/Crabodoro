@@ -68,26 +68,10 @@ let startGame = () => {
    let startTime = (new Date()).getTime();
    let coinCount = 0;
 
-   let prevTime = (new Date()).getTime();
-   setInterval(async () => {
-      let nowTime = (new Date()).getTime();
-      //if current time - start time = 1 second then update
-      let elapsed = nowTime - startTime;
-
-      let remainingTime = TOTAL_TIME_MS - elapsed;
-
-
-      if (await isOnTask()) {
-         coinCount += calculateCoinEarned(nowTime - prevTime, COIN_RATE);
-      }
-
-
-      //update text in html file
-      chrome.storage.local.set({ coinCount });
-      chrome.storage.local.set({ remainingTime });
-
-      prevTime = nowTime;
-   }, 1);
+   //update text in html file
+   chrome.storage.local.set({ startTime })
+   chrome.storage.local.set({ TOTAL_TIME_MS });
+   chrome.storage.local.set({ coinCount });
 }
 
 chrome.runtime.onMessage.addListener(

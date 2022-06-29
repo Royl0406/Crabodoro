@@ -2,9 +2,9 @@ startUpdateLoop();
 
 function startUpdateLoop() {
     setInterval(() => {
-        chrome.storage.local.get(['coinCount', 'remainingTime'], function (result) {
+        chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'coinCount', 'remainingTime'], function (result) {
             displayCoinCount(result.coinCount);
-            displayRemainingTime(result.remainingTime);
+            displayRemainingTime(calcRemainingTime(result.startTime, result.TOTAL_TIME_MS));
         });
     }, 100);
 }
@@ -12,6 +12,11 @@ function startUpdateLoop() {
 function displayCoinCount(coinCount) {
     let divCoinCount = document.getElementById("coin-count");
     divCoinCount.textContent = "Coin: " + Math.round(coinCount);
+}
+
+function calcRemainingTime(startTime, TOTAL_TIME_MS) {
+    let elapsedTime = (new Date()).getTime() - startTime;
+    return TOTAL_TIME_MS - elapsedTime;
 }
 
 function displayRemainingTime(remainingTime) {
