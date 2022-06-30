@@ -1,10 +1,13 @@
+const MAX_COIN = 200;
+
 startUpdateLoop();
 
 function startUpdateLoop() {
     setInterval(() => {
-        chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'coinCount', 'remainingTime'], function (result) {
-            displayCoinCount(result.coinCount);
-            displayRemainingTime(calcRemainingTime(result.startTime, result.TOTAL_TIME_MS));
+        chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'totalDistractedTime'], function (result) {
+            let remainingTimeMs = calcRemainingTime(result.startTime, result.TOTAL_TIME_MS);
+            displayRemainingTime(remainingTimeMs);
+            displayCoinCount(calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime));
         });
     }, 100);
 }
@@ -33,4 +36,17 @@ function displaySeconds(remainingTime) {
         return 59
     }
     return (remainingTime / 1000) % 60;
+}
+
+function calcCoinEarned(TOTAL_TIME_MS, remainingTimeMs, totalDistractedTime) {
+    let coinRate = MAX_COIN / TOTAL_TIME_MS;
+    let coinDeductRate = coinRate / 2;
+
+    let elapsedTime = TOTAL_TIME_MS - remainingTimeMs;
+    let focusedTime = elapsedTime - totalDistractedTime;
+
+    let coinsEarned = coinRate * focusedTime;
+    let coinsDeducted = totalDistractedTime * coinDeductRate;
+
+    return coinsEarned - coinsDeducted;
 }

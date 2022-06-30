@@ -15,11 +15,27 @@ function showScreenBlocker(tabId) {
    });
 }
 
-function urlChangeHandler(url, tabId) {
+async function urlChangeHandler(url, tabId) {
    let isDistracted = false;
+   let { isDistracted: prevIsDistracted } = await chrome.storage.local.get(['isDistracted']);
    if (isUrlDistracting(url)) {
       showScreenBlocker(tabId);
       isDistracted = true;
+   }
+   if (prevIsDistracted !== isDistracted) {
+      //Not distracted anymore
+      if (isDistracted === false) {
+         let stopTime = (new Date()).getTime();
+         let { totalDistractedTime, distractedStartTime } = await chrome.storage.local.get(['totalDistractedTime', 'distractedStartTime']);
+         let elapsed = stopTime - distractedStartTime;
+         totalDistractedTime += elapsed;
+         chrome.storage.local.set({ totalDistractedTime });
+      }
+      //Became distracted
+      else {
+         distractedStartTime = (new Date()).getTime();
+         chrome.storage.local.set({ distractedStartTime });
+      }
    }
    chrome.storage.local.set({ isDistracted });
 }
@@ -32,24 +48,19 @@ let isOnTask = async () => {
    return !result.isDistracted;
 }
 
-
-let calculateCoinEarned = (elapsed, rate) => {
-   return elapsed * rate;
-}
-
 function addTabListeners() {
    chrome.tabs.onActivated.addListener(function (activeInfo) {
-      chrome.tabs.get(activeInfo.tabId, function (tab) {
+      chrome.tabs.get(activeInfo.tabId, async function (tab) {
          let currentUrl = tab.url;
          let currentTabId = tab.id;
-         urlChangeHandler(currentUrl, currentTabId);
+         await urlChangeHandler(currentUrl, currentTabId);
       });
    });
 
-   chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
+   chrome.tabs.onUpdated.addListener(async function(tabId, change, tab) {
       if (tab.active && change.url) {
          let newUrl = change.url;
-         urlChangeHandler(newUrl, tabId);
+         await urlChangeHandler(newUrl, tabId);
       }
    });
 }
@@ -66,12 +77,14 @@ let startGame = () => {
 
    // Current time in milliseconds (from the epoch)
    let startTime = (new Date()).getTime();
-   let coinCount = 0;
+   let totalDistractedTime = 0;
+   let isDistracted = false;
 
    //update text in html file
    chrome.storage.local.set({ startTime })
    chrome.storage.local.set({ TOTAL_TIME_MS });
-   chrome.storage.local.set({ coinCount });
+   chrome.storage.local.set({ totalDistractedTime });
+   chrome.storage.local.set({ isDistracted });
 }
 
 chrome.runtime.onMessage.addListener(
