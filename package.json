@@ -1,0 +1,28 @@
+{
+  "name": "tab_checker",
+  "version": "0.0.1",
+  "description": "Pomodoro Chrome Extension w/ Crabs",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Royl0406/tab_checker.git"
+  },
+  "keywords": [
+    "pomodoro",
+    "chrome-extension",
+    "crab",
+    "crabodoro"
+  ],
+  "author": "Roy <royliuzy0406@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Royl0406/tab_checker/issues"
+  },
+  "homepage": "https://github.com/Royl0406/tab_checker#readme",
+  "devDependencies": {
+    "eslint": "^8.18.0"
+  }
+}
