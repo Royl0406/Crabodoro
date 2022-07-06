@@ -3,49 +3,49 @@ const MAX_COIN = 200;
 startUpdateLoop();
 
 function startUpdateLoop() {
-    setInterval(() => {
-        chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'totalDistractedTime'], function (result) {
-            let remainingTimeMs = calcRemainingTime(result.startTime, result.TOTAL_TIME_MS);
-            displayRemainingTime(remainingTimeMs);
-            displayCoinCount(calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime));
-        });
-    }, 100);
+  setInterval(() => {
+    chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'totalDistractedTime'], function(result) {
+      const remainingTimeMs = calcRemainingTime(result.startTime, result.TOTAL_TIME_MS);
+      displayRemainingTime(remainingTimeMs);
+      displayCoinCount(calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime));
+    });
+  }, 100);
 }
 
 function displayCoinCount(coinCount) {
-    let divCoinCount = document.getElementById("coin-count");
-    divCoinCount.textContent = "Coin: " + Math.round(coinCount);
+  const divCoinCount = document.getElementById('coin-count');
+  divCoinCount.textContent = 'Coin: ' + Math.round(coinCount);
 }
 
 function calcRemainingTime(startTime, TOTAL_TIME_MS) {
-    let elapsedTime = (new Date()).getTime() - startTime;
-    return TOTAL_TIME_MS - elapsedTime;
+  const elapsedTime = (new Date()).getTime() - startTime;
+  return TOTAL_TIME_MS - elapsedTime;
 }
 
 function displayRemainingTime(remainingTime) {
-    let divRemainingTime = document.getElementById("remaining-time");
-    divRemainingTime.textContent = Math.floor(displayMinutes(remainingTime)) + " : " + Math.round(displaySeconds(remainingTime));
+  const divRemainingTime = document.getElementById('remaining-time');
+  divRemainingTime.textContent = Math.floor(displayMinutes(remainingTime)) + ' : ' + Math.round(displaySeconds(remainingTime));
 }
 
 function displayMinutes(remainingTime) {
-    return (remainingTime / 1000) / 60;
+  return (remainingTime / 1000) / 60;
 }
 
 function displaySeconds(remainingTime) {
-    if ((remainingTime / 1000) % 60 >= 59) {
-        return 59
-    }
-    return (remainingTime / 1000) % 60;
+  if ((remainingTime / 1000) % 60 >= 59) {
+    return 59;
+  }
+  return (remainingTime / 1000) % 60;
 }
 
 function calcCoinEarned(TOTAL_TIME_MS, remainingTimeMs, totalDistractedTime) {
-    let coinRate = MAX_COIN / TOTAL_TIME_MS;
-    let coinDeductRate = coinRate / 2;
+  const coinRate = MAX_COIN / TOTAL_TIME_MS;
+  const coinDeductRate = coinRate / 2;
 
-    let elapsedTime = TOTAL_TIME_MS - remainingTimeMs;
-    let focusedTime = elapsedTime - totalDistractedTime;
+  const elapsedTime = TOTAL_TIME_MS - remainingTimeMs;
+  const focusedTime = elapsedTime - totalDistractedTime;
 
-    let coinsEarned = coinRate * focusedTime;
-    let coinsDeducted = totalDistractedTime * coinDeductRate;
-    return coinsEarned - coinsDeducted;
+  const coinsEarned = coinRate * focusedTime;
+  const coinsDeducted = totalDistractedTime * coinDeductRate;
+  return coinsEarned - coinsDeducted;
 }

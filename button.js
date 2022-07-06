@@ -1,10 +1,10 @@
 window.onload = () => {
-  var myButton = document.getElementById('card-unrated');
+  const myButton = document.getElementById('card-unrated');
 
   myButton.onclick = () => {
-    var location = "pomodoro.html"
+    const location = 'pomodoro.html';
     changePopupLocation(location);
-    chrome.runtime.sendMessage("start button clicked");
+    chrome.runtime.sendMessage('start button clicked');
   };
-}
+};
 
