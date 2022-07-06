@@ -47,6 +47,5 @@ function calcCoinEarned(TOTAL_TIME_MS, remainingTimeMs, totalDistractedTime) {
 
     let coinsEarned = coinRate * focusedTime;
     let coinsDeducted = totalDistractedTime * coinDeductRate;
-
     return coinsEarned - coinsDeducted;
 }
