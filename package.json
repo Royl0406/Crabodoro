@@ -4,7 +4,7 @@
   "description": "Pomodoro Chrome Extension w/ Crabs",
   "main": "background.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint ."
   },
   "repository": {
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Royl0406/tab_checker#readme",
   "devDependencies": {
     "eslint": "^8.19.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "jest": "^28.1.2"
   }
 }
