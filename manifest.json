@@ -1,5 +1,5 @@
 {
-    "name": "Tab Detector",
+    "name": "Crabodoro",
     "description": "Informs you what tab you're currently on",
     "version": "1.0",
     "manifest_version": 3,
@@ -11,6 +11,5 @@
     "host_permissions": ["https://www.youtube.com/*"],
     "background": {
         "service_worker": "background.js"
-    },
-    "options_page": "main.html"
+    }
 }

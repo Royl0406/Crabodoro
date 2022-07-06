@@ -1,5 +1,15 @@
 //Tab Detector
 //background.js
+chrome.runtime.onInstalled.addListener(function (e) {
+   if(e.reason === chrome.runtime.OnInstalledReason.INSTALL) {
+      chrome.storage.local.set({isOnboardingDone: false})
+      
+      chrome.tabs.create({
+         url: "./onBoarding.html"
+      })
+   }
+})
+
 function isUrlDistracting(url) {
    if (url === "https://www.youtube.com/" || url === "https://www.instagram.com/") {
       return true;
