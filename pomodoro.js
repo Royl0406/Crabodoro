@@ -50,4 +50,4 @@ function calcCoinEarned(TOTAL_TIME_MS, remainingTimeMs, totalDistractedTime) {
   return coinsEarned - coinsDeducted;
 }
 
-module.exports = {displayMinutes};
+//module.exports = {displayMinutes};

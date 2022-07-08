@@ -4,7 +4,7 @@
   "description": "Pomodoro Chrome Extension w/ Crabs",
   "main": "background.js",
   "scripts": {
-    "test": "jest",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
     "lint": "eslint ."
   },
   "repository": {
@@ -27,5 +27,9 @@
     "eslint": "^8.19.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^28.1.2"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-node",
+    "transform": {}
   }
 }
