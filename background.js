@@ -5,7 +5,7 @@ chrome.runtime.onInstalled.addListener(function (e) {
       chrome.storage.local.set({isOnboardingDone: false})
       
       chrome.tabs.create({
-         url: "./onBoarding.html"
+         url: "./Settings/onBoarding.html"
       })
    }
 })
