@@ -3,8 +3,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const btn = document.getElementById("btn-cont")
     
     btn.addEventListener("click", function() {
-        chrome.tabs.create({
-            url: "./onBoarding.html"
-         })
+        
+        var crab = {
+            name: input,
+            level: 1
+        }
+
+        chrome.storage.local.set({ crab });
+
+         
+        window.location.href = "./settings.html";
     })
 })
