@@ -4,8 +4,8 @@
     "version": "1.0",
     "manifest_version": 3,
     "action": {
-        "default_icon": "hewwo.png",
-        "default_popup": "main.html"
+        "default_icon": "Assets/hewwo.png",
+        "default_popup": "Game-menus/main.html"
     },
     "permissions": ["tabs", "notifications", "scripting", "storage"],
     "host_permissions": ["https://www.youtube.com/*"],
