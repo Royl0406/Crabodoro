@@ -1,0 +1,39 @@
+.button-box {
+    background-color: #51A388;
+    cursor: pointer;
+}
+
+.gamemode-name {
+    color: white;
+    text-align: center;
+    padding-top: 15px;
+    /*edit later*/
+    /*doesn't look as good*/
+    -webkit-text-stroke: 0.4px black;
+}
+
+.game-info {
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: white;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex: 1 1 auto;
+    padding: 10px;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: row;
+}
