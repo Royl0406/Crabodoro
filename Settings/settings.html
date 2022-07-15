@@ -3,62 +3,28 @@
 
 <head>
     <link rel="stylesheet" href="../Common/theme.css">
+    <link rel="stylesheet" href="./settings.css">
     <style>
         body {
             background-color: rgba(235, 138, 24, 0.36);
             font-family: sans-serif;
         }
-
-        .center {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .button-text {
-            border: none;
-            color: black;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-
-        .default-button-box {
-            background-color: #32F02E;
-            cursor: pointer;
-        }
-
-        .default-button-box:hover {
-            background-color: #30EB2D;
-        }
-
-        .custom-button-box {
-            background-color: #D9D9D9;
-            cursor: pointer;
-        }
-
-        .custom-button-box:hover {
-            background-color: #C9C9C9;
-        }
     </style>
+    <script src="settings.js"></script>
 </head>
 
 <body>
     <div>
         <button id="default-btn" class="button-text default-button-box">Default</button>
-        <button od="custom-btn" class="button-text custom-button-box">Custom</button>
+        <button id="custom-btn" class="button-text custom-button-box">Custom</button>
     </div>
 
     <div class="center">
-        <h1 id="block-mode">Default blocklist</h1>
+        <h1 id="block-mode">Choose a Blocklist</h1>
         <h3 style="font-weight: normal">During study sessions, you may not visit websites on the blocklist</h3>
+        <input id="url-input" placeholder="Please enter the URL of the website here" type="text" class="text-line hidden">
         <div id="blocklist"></div>
-        <button id="save" class="button-text navigation-button">Done</button>
+        <button id="save" class="button-text navigation-button" style="margin-top: 50px">Done</button>
     </div>
 </body>
 
