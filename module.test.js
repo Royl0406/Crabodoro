@@ -1,4 +1,4 @@
 import { calc } from './module' 
 test('calc', () => {
-    expect(calc().toBe(5));
+    expect(calc()).toBe(5);
 })

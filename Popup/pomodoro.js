@@ -27,7 +27,7 @@ function displayRemainingTime(remainingTime) {
   divRemainingTime.textContent = Math.floor(displayMinutes(remainingTime)) + ' : ' + Math.round(displaySeconds(remainingTime));
 }
 
-function displayMinutes(remainingTime) {
+export function displayMinutes(remainingTime) {
   return (remainingTime / 1000) / 60;
 }
 
@@ -49,5 +49,3 @@ function calcCoinEarned(TOTAL_TIME_MS, remainingTimeMs, totalDistractedTime) {
   const coinsDeducted = totalDistractedTime * coinDeductRate;
   return coinsEarned - coinsDeducted;
 }
-
-//module.exports = {displayMinutes};
