@@ -18,4 +18,25 @@ document.addEventListener("DOMContentLoaded", function () {
         blocklist.style.display = "block";
         urlInput.style.display = "block";
     })
+
+    urlInput.addEventListener("keypress", function () {
+        if(event.key === "Enter") {
+            if(isValidUrl(urlInput.value)) {
+                blocklist.innerHTML += "<li>" + urlInput.value + "</li>";
+            }
+            else {
+                alert("Please enter a valid url");
+            }
+        }
+    })
+
+    const isValidUrl = (url) => {
+        try {
+          new URL(url);
+        } catch (e) {
+          console.error(e);
+          return false;
+        }
+        return true;
+      };
 })
