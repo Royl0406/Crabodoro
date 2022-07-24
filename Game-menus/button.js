@@ -1,3 +1,5 @@
+import { changePopupLocation } from '../Common/utilities'
+
 window.onload = () => {
   var myButton = document.getElementById('card-unrated');
 
