@@ -1,3 +1,12 @@
+//import not working
+//import { changePopupLocation } from "../Common/utilities";
+//delete after import fixed
+function changePopupLocation (location) {
+    window.location.href = location;
+    chrome.action.setPopup(
+      {popup: location},
+    );
+  }
 const MAX_COIN = 200;
 
 startUpdateLoop();
@@ -6,6 +15,9 @@ function startUpdateLoop() {
     setInterval(() => {
         chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'totalDistractedTime'], function (result) {
             let remainingTimeMs = calcRemainingTime(result.startTime, result.TOTAL_TIME_MS);
+            if(remainingTimeMs <= 0) {
+                changePopupLocation()
+            }
             displayRemainingTime(remainingTimeMs);
             displayCoinCount(calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime));
         });
