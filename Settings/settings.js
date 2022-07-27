@@ -22,7 +22,18 @@ document.addEventListener("DOMContentLoaded", function () {
     urlInput.addEventListener("keypress", function () {
         if(event.key === "Enter") {
             if(isValidUrl(urlInput.value)) {
-                blocklist.innerHTML += "<li>" + urlInput.value + "</li>";
+                let listItem = document.createElement("li");
+                listItem.appendChild(document.createTextNode(urlInput.value + " [x]"));
+                blocklist.appendChild(listItem);
+                listItem.onclick = function() {
+                    console.log(urlInput.value);
+                }
+
+                chrome.storage.local.get(["blocked"], function(result) {
+                    let tempList = result.blocked;
+                    tempList.push(urlInput.value);
+                    chrome.storage.local.set({blocked: tempList});
+                })
             }
             else {
                 alert("Please enter a valid url");

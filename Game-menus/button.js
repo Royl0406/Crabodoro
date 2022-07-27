@@ -1,12 +1,4 @@
-//import not working
-//import { changePopupLocation } from '../Common/utilities'
-//delete after import fixed
-function changePopupLocation (location) {
-  window.location.href = location;
-  chrome.action.setPopup(
-    {popup: location},
-  );
-}
+import { changePopupLocation } from '../Common/utilities.js'
 
 window.onload = () => {
   var myButton = document.getElementById('card-unrated');

@@ -4,6 +4,9 @@ chrome.runtime.onInstalled.addListener(function (e) {
    if(e.reason === chrome.runtime.OnInstalledReason.INSTALL) {
       chrome.storage.local.set({isOnboardingDone: false})
       
+      let blocked = [];
+      chrome.storage.local.set({ blocked })
+
       chrome.tabs.create({
          url: "./Settings/onBoarding.html"
       })
