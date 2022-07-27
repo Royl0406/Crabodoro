@@ -8,6 +8,7 @@ function changePopupLocation (location) {
     );
   }
 const MAX_COIN = 200;
+let totCoinsEarned = 0;
 
 startUpdateLoop();
 
@@ -16,10 +17,12 @@ function startUpdateLoop() {
         chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'totalDistractedTime'], function (result) {
             let remainingTimeMs = calcRemainingTime(result.startTime, result.TOTAL_TIME_MS);
             if(remainingTimeMs <= 0) {
-                changePopupLocation()
+                chrome.local.storage.set({ totCoinsEarned });
+                changePopupLocation("../Stats-Screen/stats.html");
             }
             displayRemainingTime(remainingTimeMs);
             displayCoinCount(calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime));
+            totCoinsEarned = calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime);
         });
     }, 100);
 }
