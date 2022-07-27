@@ -1,17 +1,14 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
     const COIN_EARNED = document.getElementById("coin-earned");
     const FOCUS_TIME = document.getElementById("focus-time");
-    print(fetchEarnedCoin);
-    print(fetchFocusTime);
 
-    FOCUS_TIME.innerHTML += fetchFocusTime();
-    COIN_EARNED.innerHTML += fetchEarnedCoin();
+    FOCUS_TIME.innerHTML += await fetchFocusTime();
+    COIN_EARNED.innerHTML += await fetchEarnedCoin();
 })
 
-async function fetchEarnedCoin () {
-    await chrome.local.storage.get(totCoinsEarned, function() {
-        return totCoinsEarned;
-    })
+function fetchEarnedCoin () {
+    let result = await chrome.local.storage.get(["totCoinsEarned"]);
+    //return result.
 }
 
 async function fetchFocusTime () {
