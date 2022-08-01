@@ -16,8 +16,9 @@ function startUpdateLoop() {
     setInterval(() => {
         chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'totalDistractedTime'], function (result) {
             let remainingTimeMs = calcRemainingTime(result.startTime, result.TOTAL_TIME_MS);
-            if(remainingTimeMs <= 0) {
-                chrome.local.storage.set({ totCoinsEarned });
+            if(remainingTimeMs < 0) {
+                console.log(totCoinsEarned);
+                chrome.storage.local.set({ totCoinsEarned });
                 changePopupLocation("../Stats-Screen/stats.html");
             }
             displayRemainingTime(remainingTimeMs);
