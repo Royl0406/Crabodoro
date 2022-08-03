@@ -13,8 +13,23 @@ chrome.runtime.onInstalled.addListener(function (e) {
    }
 })
 
+async function fetchBlockedList() {
+   let blockedList = await chrome.storage.local.get(["blocked"]);
+   return blockedList;
+}
+
 function isUrlDistracting(url) {
-   if (url === "https://www.youtube.com/" || url === "https://www.instagram.com/") {
+   let blockedList = fetchBlockedList();
+   /*for(let i = 0; i < blockedList.length; i++) {
+      if(url === blockedList[i]) {
+         console.log("website found in block list");
+         return true;
+      }
+   }
+   return false;*/
+
+   if(url === "https://youtube.com") {
+      console.log("distracting site");
       return true;
    }
    return false;
