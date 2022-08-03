@@ -1,3 +1,5 @@
+import { changePopupLocation } from '../Common/utilities.js'
+
 document.addEventListener("DOMContentLoaded", function () {
     const btnDefault = document.getElementById("default-btn");
     const btnCustom = document.getElementById("custom-btn");
@@ -19,6 +21,30 @@ document.addEventListener("DOMContentLoaded", function () {
         urlInput.style.display = "block";
     })
 
+    btnDone.addEventListener("click", function () {
+        alert("Blocked list saved! You may close this tab and open Crabodoro.");
+    })
+
+    function removeUrlFromStorage(listItem) {
+        chrome.storage.local.get(["blocked"], function (result) {
+            let tempList = result.blocked;
+            let matchingIndex = tempList.findIndex((blockedUrl) => {
+                return listItem.innerText.indexOf(blockedUrl);
+            });
+            tempList.splice(matchingIndex, 1);
+            chrome.storage.local.set({ blocked: tempList });
+        })
+        listItem.remove();
+    }
+
+    function updateBlocklistInStorage(urlInput) {
+        chrome.storage.local.get(["blocked"], function (result) {
+            let tempList = result.blocked;
+            tempList.push(urlInput.value);
+            chrome.storage.local.set({ blocked: tempList });
+        })
+    }
+
     urlInput.addEventListener("keypress", function () {
         if (event.key === "Enter") {
             if (isValidUrl(urlInput.value)) {
@@ -27,23 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 blocklist.appendChild(listItem);
                 listItem.onclick = function () {
                     console.log(listItem.innerText);
-                    chrome.storage.local.get(["blocked"], function (result) {
-                        let tempList = result.blocked;
-                        let matchingIndex = tempList.findIndex((blockedUrl) => {
-                            return listItem.innerText.contains(blockedUrl);
-                        });
-                        tempList.splice(matchingIndex, 1);
-                        chrome.storage.local.set({ blocked: tempList });
-
-                    })
-                    listItem.remove();
+                    removeUrlFromStorage(listItem);
                 }
-
-                chrome.storage.local.get(["blocked"], function (result) {
-                    let tempList = result.blocked;
-                    tempList.push(urlInput.value);
-                    chrome.storage.local.set({ blocked: tempList });
-                })
+                updateBlocklistInStorage(urlInput);
             }
             else {
                 alert("Please enter a valid url");
