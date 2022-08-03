@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", async function() {
 })
 
 async function fetchEarnedCoin () {
-    let result = await chrome.local.storage.get(["totCoinsEarned"]);
+    let result = await chrome.storage.local.get(["totCoinsEarned"]);
     return result.totCoinsEarned;
 }
 
 async function fetchFocusTime () {
-    await chrome.local.storage.get(['TOTAL_TIME_MS', 'totalDistractedTime'], function (result) {
-        return result.TOTAL_TIME_MS - result.totalDistractedTime;
-    })
+    let result = await chrome.storage.local.get(['TOTAL_TIME_MS', 'totalDistractedTime']);
+    return result.TOTAL_TIME_MS - result.totalDistractedTime;
+    
 }
