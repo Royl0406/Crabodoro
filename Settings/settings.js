@@ -20,19 +20,29 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
     urlInput.addEventListener("keypress", function () {
-        if(event.key === "Enter") {
-            if(isValidUrl(urlInput.value)) {
+        if (event.key === "Enter") {
+            if (isValidUrl(urlInput.value)) {
                 let listItem = document.createElement("li");
                 listItem.appendChild(document.createTextNode(urlInput.value + " [x]"));
                 blocklist.appendChild(listItem);
-                listItem.onclick = function() {
-                    console.log(urlInput.value);
+                listItem.onclick = function () {
+                    console.log(listItem.innerText);
+                    chrome.storage.local.get(["blocked"], function (result) {
+                        let tempList = result.blocked;
+                        let matchingIndex = tempList.findIndex((blockedUrl) => {
+                            return listItem.innerText.contains(blockedUrl);
+                        });
+                        tempList.splice(matchingIndex, 1);
+                        chrome.storage.local.set({ blocked: tempList });
+
+                    })
+                    listItem.remove();
                 }
 
-                chrome.storage.local.get(["blocked"], function(result) {
+                chrome.storage.local.get(["blocked"], function (result) {
                     let tempList = result.blocked;
                     tempList.push(urlInput.value);
-                    chrome.storage.local.set({blocked: tempList});
+                    chrome.storage.local.set({ blocked: tempList });
                 })
             }
             else {
@@ -43,11 +53,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const isValidUrl = (url) => {
         try {
-          new URL(url);
+            new URL(url);
         } catch (e) {
-          console.error(e);
-          return false;
+            console.error(e);
+            return false;
         }
         return true;
-      };
+    };
 })
