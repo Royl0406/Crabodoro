@@ -4,3 +4,14 @@ export function changePopupLocation (location) {
     {popup: location},
   );
 }
+
+export function displayMinutes(remainingTime) {
+  return (remainingTime / 1000) / 60;
+}
+
+export function displaySeconds(remainingTime) {
+  if ((remainingTime / 1000) % 60 >= 59) {
+    return 59;
+  }
+  return (remainingTime / 1000) % 60;
+}
