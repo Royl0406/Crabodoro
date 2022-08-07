@@ -1,34 +1,43 @@
 //Tab Detector
 //background.js
+import {isUrlBlocked} from "./Common/storage-utilities.js";
+
+
 chrome.runtime.onInstalled.addListener(function (e) {
    if(e.reason === chrome.runtime.OnInstalledReason.INSTALL) {
       chrome.storage.local.set({isOnboardingDone: false})
       
+      let blocked = [];
+      chrome.storage.local.set({ blocked })
+
       chrome.tabs.create({
          url: "./Settings/onBoarding.html"
       })
    }
 })
 
-function isUrlDistracting(url) {
-   if (url === "https://www.youtube.com/" || url === "https://www.instagram.com/") {
-      return true;
-   }
-   return false;
+async function fetchBlockedList() {
+   let blockedList = await chrome.storage.local.get(["blocked"]);
+   return blockedList.blocked;
+}
+
+async function isUrlDistracting(url) {
+   let blockedList = await fetchBlockedList();
+   return isUrlBlocked(url, blockedList);
 }
 
 function showScreenBlocker(tabId) {
    //executes script to change background
    chrome.scripting.executeScript({
       target: { tabId: tabId, allFrames: true },
-      files: ['warning-tab.js']
+      files: ['Screen-Blocker/warning-tab.js']
    });
 }
 
 async function urlChangeHandler(url, tabId) {
    let isDistracted = false;
    let { isDistracted: prevIsDistracted } = await chrome.storage.local.get(['isDistracted']);
-   if (isUrlDistracting(url)) {
+   if (await isUrlDistracting(url)) {
       showScreenBlocker(tabId);
       isDistracted = true;
    }
@@ -43,7 +52,7 @@ async function urlChangeHandler(url, tabId) {
       }
       //Became distracted
       else {
-         distractedStartTime = (new Date()).getTime();
+         let distractedStartTime = (new Date()).getTime();
          chrome.storage.local.set({ distractedStartTime });
       }
    }
@@ -60,17 +69,21 @@ let isOnTask = async () => {
 
 function addTabListeners() {
    chrome.tabs.onActivated.addListener(function (activeInfo) {
+      console.log("event listener");
       chrome.tabs.get(activeInfo.tabId, async function (tab) {
          let currentUrl = tab.url;
          let currentTabId = tab.id;
          await urlChangeHandler(currentUrl, currentTabId);
+         console.log("urlChange");
       });
    });
 
    chrome.tabs.onUpdated.addListener(async function(tabId, change, tab) {
       if (tab.active && change.url) {
+         console.log("event listener-update");
          let newUrl = change.url;
          await urlChangeHandler(newUrl, tabId);
+         console.log("urlChange");
       }
    });
 }
