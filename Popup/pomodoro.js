@@ -1,6 +1,6 @@
 import { changePopupLocation } from "../Common/utilities.js";
-import { displayMinutes } from "../Common/utilities.js";
-import { displaySeconds } from "../Common/utilities.js";
+import { calcMinutes } from "../Common/utilities.js";
+import { calcSeconds } from "../Common/utilities.js";
 
 const MAX_COIN = 200;
 let totCoinsEarned = 0;
@@ -35,7 +35,7 @@ function calcRemainingTime(startTime, TOTAL_TIME_MS) {
 
 function displayRemainingTime(remainingTime) {
   const divRemainingTime = document.getElementById('remaining-time');
-  divRemainingTime.textContent = Math.floor(displayMinutes(remainingTime)) + ' : ' + Math.round(displaySeconds(remainingTime));
+  divRemainingTime.textContent = Math.floor(calcMinutes(remainingTime)) + ' : ' + Math.round(calcSeconds(remainingTime));
 }
 
 function calcCoinEarned(TOTAL_TIME_MS, remainingTimeMs, totalDistractedTime) {
