@@ -1,6 +1,6 @@
 //Tab Detector
 //background.js
-import {isUrlBlocked} from "./Common/utilities.js";
+import {isUrlBlocked} from "./Common/storage-utilities.js";
 
 
 chrome.runtime.onInstalled.addListener(function (e) {
