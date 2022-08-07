@@ -8,7 +8,7 @@
         "default_popup": "Game-menus/main.html"
     },
     "permissions": ["tabs", "notifications", "scripting", "storage"],
-    "host_permissions": ["https://www.youtube.com/*"],
+    "host_permissions": ["https://www.youtube.com/*", "http://*/", "https://*/"],
     "background": {
         "service_worker": "background.js",
         "type": "module"
