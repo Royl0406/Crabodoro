@@ -5,13 +5,16 @@ export function changePopupLocation (location) {
   );
 }
 
-export function displayMinutes(remainingTime) {
+export function calcMinutes(remainingTime) {
   return (remainingTime / 1000) / 60;
 }
 
-export function displaySeconds(remainingTime) {
+export function calcSeconds(remainingTime) {
   if ((remainingTime / 1000) % 60 >= 59) {
     return 59;
   }
   return (remainingTime / 1000) % 60;
 }
+
+export const SESSION_TIME_MINUTES = 0.1;
+export const MAX_COIN = 200;
