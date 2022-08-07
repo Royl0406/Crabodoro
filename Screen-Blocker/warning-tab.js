@@ -1,5 +1,4 @@
 // warning tab Javascript
-const timer = 0;
 const overlay_id = document.getElementById('sd_overlay');
 if (overlay_id == null) {
   const container = document.createElement('div');
@@ -26,8 +25,4 @@ if (overlay_id == null) {
 
   document.body.appendChild(container);
 }
-// timer not working, breaks the entire thing
-/* for (style_applied == false) {
-        timer++;
-        var timer_board = document.createTextNode(timer);
-    }*/
+

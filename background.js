@@ -52,7 +52,7 @@ async function urlChangeHandler(url, tabId) {
       }
       //Became distracted
       else {
-         distractedStartTime = (new Date()).getTime();
+         let distractedStartTime = (new Date()).getTime();
          chrome.storage.local.set({ distractedStartTime });
       }
    }
