@@ -12,8 +12,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 })
 
 async function fetchEarnedCoin () {
-    let result = await chrome.storage.local.get(["totCoinsEarned"]);
-    let distractedTime = await chrome.storage.local.get(['totalDistractedTime']);
+    let result = await chrome.storage.local.get(["totCoinsEarned", "totalDistractedTime"]);
+    let distractedTime = result.totalDistractedTime;
+    console.log(distractedTime);
     if(distractedTime === 0) {
         return MAX_COIN;
     }
