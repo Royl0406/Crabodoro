@@ -1,5 +1,4 @@
-import { calcMinutes } from "../Common/utilities.js";
-import { calcSeconds } from "../Common/utilities.js";
+import { calcMinutes, calcSeconds } from "../Common/utilities.js";
 import { MAX_COIN } from "../Common/utilities.js";
 
 document.addEventListener("DOMContentLoaded", async function() {
@@ -31,4 +30,8 @@ function displayTime (focusedTime) {
     let focusedMinute = Math.floor(calcMinutes(focusedTime));
     let focusedSecond = Math.round(calcSeconds(focusedTime));
     return focusedMinute + " Minutes " + focusedSecond + " Seconds";
+}
+
+function calcExpEarned () {
+    
 }
