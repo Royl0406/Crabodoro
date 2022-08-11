@@ -15,6 +15,3 @@ export function calcSeconds(remainingTime) {
   }
   return (remainingTime / 1000) % 60;
 }
-
-export const SESSION_TIME_MINUTES = 0.1;
-export const MAX_COIN = 200;

@@ -28,11 +28,13 @@
     "babel-jest": "^28.1.3",
     "eslint": "^8.19.0",
     "eslint-config-google": "^0.14.0",
-    "jest": "^28.1.2"
+    "jest": "^28.1.2",
+    "jest-chrome": "^0.7.2"
   },
   "jest": {
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
-    }
+    },
+    "setupFilesAfterEnv": ["./jest.setup.js"]
   }
 }

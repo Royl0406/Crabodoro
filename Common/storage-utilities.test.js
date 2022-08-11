@@ -1,4 +1,4 @@
-import {isUrlBlocked} from "./storage-utilities.js";
+import {convertUrlToRegExp, isUrlBlocked} from "./storage-utilities.js";
 /*Other test cases: 
     block both http and https sites
 */
@@ -20,6 +20,13 @@ describe("storage utilities", () => {
         it("doesn't match google search of subdomain of url", () => {
             let result = isUrlBlocked("https://www.google.com/search?q=https%3A%2F%2Fwww.youtube.com", ["https://www.youtube.com"]);
             expect(result).toBe(false);
+        })
+    })
+
+    describe("convertUrlToRegExp", () => {
+        it("Correctly converts https url to a regExp pattern", () => {
+            let result = convertUrlToRegExp("https://youtube.com");
+            expect(result.source).toBe("https?:\\/\\/([a-z0-9]+[.])*youtube.com(\\/.*)?");
         })
     })
 });
