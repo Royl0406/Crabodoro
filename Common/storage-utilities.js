@@ -1,9 +1,5 @@
 //Checks if the url matches the regex pattern of urls stored in the blocklist
 export function isUrlBlocked(inputUrl, blockedList) {
-    //Create regular expressions based on link stored in the blocklist
-    //test if the url input matches any of the regexp
-    //returns true if matches, false otherwise
-   
     for (let i = 0; i < blockedList.length; i++) {
         let url = blockedList[i];
         let regExp = convertUrlToRegExp(url)
@@ -14,15 +10,19 @@ export function isUrlBlocked(inputUrl, blockedList) {
         }
     }
     return false;
-
 }
 
-export function convertUrlToRegExp (url) {
-    //Find protocol (://) index
-    //Account for the protocal length to find the end index
-    //Create substring starting from the end of the index
-    //Append Regex in front 
+export function removePrefixFromUrl(url) {
+    const protocalLength = 3;
+    let protocalindex = url.indexOf("://") + 3;
+    return url.substr(protocalindex);
+}
 
-    //CHANGE THIS LATER
-    return new RegExp("https?://([a-z0-9]+[.])*youtube.com(/.*)?");
+export function convertUrlToRegExp(url) {
+    let urlSubstring = removePrefixFromUrl(url);
+    let regExpPrefix = "https?://([a-z0-9]+[.])*";
+    let regExpSuffix = "(/.*)?";
+    let regExp = regExpPrefix + urlSubstring + regExpSuffix;
+
+    return new RegExp(regExp);
 }

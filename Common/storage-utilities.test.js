@@ -1,4 +1,4 @@
-import {convertUrlToRegExp, isUrlBlocked} from "./storage-utilities.js";
+import {convertUrlToRegExp, isUrlBlocked, removePrefixFromUrl} from "./storage-utilities.js";
 /*Other test cases: 
     block both http and https sites
 */
@@ -27,6 +27,13 @@ describe("storage utilities", () => {
         it("Correctly converts https url to a regExp pattern", () => {
             let result = convertUrlToRegExp("https://youtube.com");
             expect(result.source).toBe("https?:\\/\\/([a-z0-9]+[.])*youtube.com(\\/.*)?");
+        })
+    })
+
+    describe("removePrefixFromUrl", () => {
+        it("Correctly generates a substring of url w/o https://", () => {
+            let result = removePrefixFromUrl("https://youtube.com");
+            expect(result).toBe("youtube.com");
         })
     })
 });
