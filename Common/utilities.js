@@ -18,3 +18,4 @@ export function calcSeconds(remainingTime) {
 
 export const SESSION_TIME_MINUTES = 40;
 export const MAX_COIN = 200;
+export const MINUTE_TO_MS = 60000;
