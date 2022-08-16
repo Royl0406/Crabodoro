@@ -35,6 +35,8 @@
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     },
-    "setupFilesAfterEnv": ["./jest.setup.js"]
+    "setupFilesAfterEnv": ["./jest.setup.js"],
+    "collectCoverage": true,
+    "coverageReporters": ["text", "clover", "json", "lcov"]
   }
 }
