@@ -26,3 +26,14 @@ export function convertUrlToRegExp(url) {
 
     return new RegExp(regExp);
 }
+
+export async function fetchLevel() {
+    let result = await chrome.storage.local.get(['crab']);
+    return result.level;
+}
+
+export async function fetchFocusTime() {
+    let result = await chrome.storage.local.get(['TOTAL_TIME_MS', 'totalDistractedTime']);
+    let focusedTime = result.TOTAL_TIME_MS - result.totalDistractedTime;
+    return focusedTime;
+}
