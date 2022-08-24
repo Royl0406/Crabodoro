@@ -1,6 +1,6 @@
 import { calcMinutes, calcSeconds } from "../Common/utilities.js";
-import { MAX_COIN, SESSION_TIME_MINUTES, MINUTE_TO_MS } from "../Common/utilities.js";
-import { calcExpEarned, calcPercentTimeFocused } from "./xp-utilities.js";
+import { MAX_COIN } from "../Common/utilities.js";
+import { calcExpEarned } from "./xp-utilities.js";
 import { fetchFocusTime } from "../Common/storage-utilities.js";
 
 document.addEventListener("DOMContentLoaded", async function () {

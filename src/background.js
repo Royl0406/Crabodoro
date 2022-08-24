@@ -12,7 +12,7 @@ chrome.runtime.onInstalled.addListener(function (e) {
       chrome.storage.local.set({ blocked })
 
       chrome.tabs.create({
-         url: "./Settings/onBoarding.html"
+         url: "./src/Settings/onBoarding.html"
       })
    }
 })

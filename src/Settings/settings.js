@@ -1,5 +1,3 @@
-import { changePopupLocation } from '../Common/utilities.js'
-
 document.addEventListener("DOMContentLoaded", function () {
     const btnDefault = document.getElementById("default-btn");
     const btnCustom = document.getElementById("custom-btn");
