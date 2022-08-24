@@ -28,8 +28,8 @@ export function convertUrlToRegExp(url) {
 }
 
 export async function fetchLevel() {
-    let result = await chrome.storage.local.get(['crab']);
-    return result.level;
+    let { crab } = await chrome.storage.local.get(['crab']);
+    return crab.level;
 }
 
 export async function fetchFocusTime() {

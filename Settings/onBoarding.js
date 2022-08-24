@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
         
         var crab = {
             name: input,
-            level: 1
+            level: 1,
+            xp: 0
         }
 
         chrome.storage.local.set({ crab });
