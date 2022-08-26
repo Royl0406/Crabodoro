@@ -17,8 +17,15 @@ export async function calcPercentTimeFocused() {
     return percentTimeFocused;
 }
 
-async function storeExpEarned(xp) {
-    let { crab } = await chrome.storage.local.get(['crab']);
+interface Crab {
+    name: string;
+    level: number;
+    xp: number;
+}
+
+async function storeExpEarned(xp: number) {
+    let result = await chrome.storage.local.get(['crab']);
+    let crab = result.crab as Crab;
     crab.xp = crab.xp + xp;
     chrome.storage.local.set({ crab });
 }

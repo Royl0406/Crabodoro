@@ -14,7 +14,7 @@ function startUpdateLoop() {
             if(remainingTimeMs < 0) {
                 console.log(totCoinsEarned);
                 chrome.storage.local.set({ totCoinsEarned });
-                changePopupLocation("/src/Stats-Screen/stats.html");
+                changePopupLocation("/dist/Stats-Screen/stats.html");
             }
             displayRemainingTime(remainingTimeMs);
             displayCoinCount(calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime));
