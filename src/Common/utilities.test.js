@@ -1,5 +1,5 @@
-import {calcMinutes} from './utilities.js'; 
+import { calcMinutes } from "./utilities.js";
 
-test('calcMinutes',  () => {
-    expect(calcMinutes(0)).toBe(0);
-})
+test("calcMinutes", () => {
+  expect(calcMinutes(0)).toBe(0);
+});

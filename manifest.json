@@ -1,16 +1,16 @@
 {
-    "name": "Crabodoro",
-    "description": "Informs you what tab you're currently on",
-    "version": "1.0",
-    "manifest_version": 3,
-    "action": {
-        "default_icon": "Assets/hewwo.png",
-        "default_popup": "dist/Game-menus/main.html"
-    },
-    "permissions": ["tabs", "notifications", "scripting", "storage"],
-    "host_permissions": ["https://www.youtube.com/*", "http://*/", "https://*/"],
-    "background": {
-        "service_worker": "dist/background.js",
-        "type": "module"
-    }
+  "name": "Crabodoro",
+  "description": "Informs you what tab you're currently on",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_icon": "Assets/hewwo.png",
+    "default_popup": "dist/Game-menus/main.html"
+  },
+  "permissions": ["tabs", "notifications", "scripting", "storage"],
+  "host_permissions": ["https://www.youtube.com/*", "http://*/", "https://*/"],
+  "background": {
+    "service_worker": "dist/background.js",
+    "type": "module"
+  }
 }
