@@ -1,8 +1,7 @@
-import { calcMinutes, calcSeconds } from "../Common/utilities.js";
+import { calcMinutes, calcSeconds, navToMainMenu } from "../Common/utilities.js";
 import { MAX_COIN } from "../Common/utilities.js";
 import { calcExpEarned } from "./xp-utilities.js";
 import { fetchFocusTime } from "../Common/storage-utilities.js";
-import { changePopupLocation } from '../Common/utilities.js'
 
 document.addEventListener("DOMContentLoaded", async function () {
     const COIN_EARNED = document.getElementById("total-coin");
@@ -15,8 +14,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     XP_Earned.innerHTML += await calcExpEarned();
 
     BTN_RETURN.addEventListener("click", () => {
-        var location = "/dist/Game-menus/main.html";
-        changePopupLocation(location);
+        navToMainMenu();
     })
 })
 
