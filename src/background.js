@@ -31,7 +31,7 @@ function showScreenBlocker(tabId) {
    //executes script to change background
    chrome.scripting.executeScript({
       target: { tabId: tabId, allFrames: true },
-      files: ['Screen-Blocker/warning-tab.js']
+      files: ['./dist/Screen-Blocker/warning-tab.js']
    });
 }
 
