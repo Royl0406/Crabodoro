@@ -1,4 +1,4 @@
-import { changePopupLocation } from "../Common/utilities.js";
+import { navToStats } from "../Common/utilities.js";
 import { calcMinutes } from "../Common/utilities.js";
 import { calcSeconds } from "../Common/utilities.js";
 
@@ -14,7 +14,7 @@ function startUpdateLoop() {
             if(remainingTimeMs < 0) {
                 console.log(totCoinsEarned);
                 chrome.storage.local.set({ totCoinsEarned });
-                changePopupLocation("/dist/Stats-Screen/stats.html");
+                navToStats();
             }
             displayRemainingTime(remainingTimeMs);
             displayCoinCount(calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime));
