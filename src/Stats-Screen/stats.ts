@@ -1,8 +1,7 @@
-import { calcMinutes, calcSeconds } from "../Common/utilities.js";
-import { MAX_COIN } from "../Common/utilities.js";
+import { calcMinutes, calcSeconds, MAX_COIN, changePopupLocation } from "../Common/utilities.js";
 import { calcExpEarned } from "./xp-utilities.js";
 import { fetchFocusTime } from "../Common/storage-utilities.js";
-import { changePopupLocation } from '../Common/utilities.js'
+import { Crab } from "../Types";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const COIN_EARNED = document.getElementById("total-coin");
@@ -27,11 +26,21 @@ async function fetchEarnedCoin() {
     if (distractedTime === 0) {
         return MAX_COIN;
     }
-    return result.totCoinsEarned;
+    storeCoinEarned(result.totCoinsEarned);
+    return Math.round(result.totCoinsEarned);
 }
 
 function displayTime(focusedTime) {
     let focusedMinute = Math.floor(calcMinutes(focusedTime));
     let focusedSecond = Math.round(calcSeconds(focusedTime));
     return focusedMinute + " Minutes " + focusedSecond + " Seconds";
+}
+
+
+async function storeCoinEarned(coin) {
+    let result = await chrome.storage.local.get(['crab']);
+    let crab = result.crab as Crab;
+    crab.coin = crab.coin + coin;
+    console.log("storeCoin: " + crab.coin);
+    chrome.storage.local.set({ crab });
 }
