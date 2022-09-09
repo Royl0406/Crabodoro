@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../Commmon/theme.css"> 
+    <link rel="stylesheet" href="../Common/theme.css"> 
+    <link rel="stylesheet" href="./crabSpace.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background-color: rgba(235, 138, 24, 0.36);
+        }
+
+    </style>
     <script src="crabSpace.js" type="module"></script>
 </head>
 
 <body>
+    <div class="row space-between">
+        <div id="crab-info">
+            <h2 style="margin-top: 0; margin-bottom: 10px">Name</h2>
+            <div class="xp-outline">
+                <div class="xp-actual">
+                    <span style="padding-left: 5px">level</span> 
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: center">
+            <button style="height: 40px; margin-right: 20px">food</button>
+            <div>3</div>
+        </div>
+    </div>
     <button id="main-menu" class="button-text navigation-button">Main Menu</button>
     <button id="shop" class="button-text navigation-button">Shop</button>
 </body>
