@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             name: input.value,
             level: 1,
             xp: 0,
+            nextLevelXp: 100,
             coin: 0
         }
 

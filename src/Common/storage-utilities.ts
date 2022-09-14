@@ -1,3 +1,5 @@
+import { Crab } from "../Types";
+
 //Checks if the url matches the regex pattern of urls stored in the blocklist
 export function isUrlBlocked(inputUrl, blockedList) {
     for (let i = 0; i < blockedList.length; i++) {
@@ -37,3 +39,18 @@ export async function fetchFocusTime() {
     let focusedTime = result.TOTAL_TIME_MS - result.totalDistractedTime;
     return focusedTime;
 }
+
+export async function fetchXp() {
+    let result = await chrome.storage.local.get(['crab']);
+    let crab =  result.crab as Crab;
+    return crab.level;
+}
+
+export async function updateLevel(newLevel: number) {
+    let result = await chrome.storage.local.get(['crab']);
+    let crab =  result.crab as Crab;
+    crab.level = newLevel;
+    chrome.storage.local.set({crab});
+}
+
+

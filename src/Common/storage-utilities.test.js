@@ -1,4 +1,4 @@
-import {convertUrlToRegExp, isUrlBlocked, removePrefixFromUrl} from "./storage-utilities.js";
+import {convertUrlToRegExp, isUrlBlocked, removePrefixFromUrl} from "./storage-utilities";
 /*Other test cases: 
     block both http and https sites
 */

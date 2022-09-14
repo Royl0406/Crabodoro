@@ -7,3 +7,13 @@
     width: 50%;
     background-color: green;
 }
+
+.center-img {
+    align-content: center;
+    justify-content: center;
+}
+
+.img-button {
+    width: fit-content;
+    height: fit-content;
+}
