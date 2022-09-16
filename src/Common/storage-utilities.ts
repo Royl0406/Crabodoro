@@ -43,14 +43,8 @@ export async function fetchFocusTime() {
 export async function fetchXp() {
     let result = await chrome.storage.local.get(['crab']);
     let crab =  result.crab as Crab;
-    return crab.level;
+    return crab.xp;
 }
 
-export async function updateLevel(newLevel: number) {
-    let result = await chrome.storage.local.get(['crab']);
-    let crab =  result.crab as Crab;
-    crab.level = newLevel;
-    chrome.storage.local.set({crab});
-}
 
 

@@ -1,12 +1,12 @@
-import { fetchLevel, fetchFocusTime, fetchXp, updateLevel } from "../Common/storage-utilities";
+import { fetchLevel, fetchFocusTime, fetchXp } from "../Common/storage-utilities";
 import { SESSION_TIME_MINUTES, MINUTE_TO_MS } from "../Common/utilities";
 import { Crab } from "../Types/crab";
 
-const MULTIPLIER = 10;
+const MULTIPLIER = 100;
 export async function calcExpEarned() {
     let level = await fetchLevel();
     let percentTimeFocused = await calcPercentTimeFocused();
-    let xpEarned = level * MULTIPLIER * percentTimeFocused as number;
+    let xpEarned = MULTIPLIER * percentTimeFocused as number;
     if(xpEarned < 0) {
         xpEarned = 0;
     }
@@ -30,27 +30,12 @@ async function storeExpEarned(xp: number) {
 
 export function calcLevelUpXp(level: number) {
     let prevLevel = level - 1;
-    let levelUpXP = (prevLevel + level) * 80;
+    //model taken from MonkeyType
+    let levelUpXP = 49 * (level - 1) + 100;
     return levelUpXP;
 }
 
-export async function storeNewLevelUpXp(xp: number) {
-    let result = await chrome.storage.local.get(['crab']);
-    let crab = result.crab as Crab;
-    crab.nextLevelXp = xp;
-    chrome.storage.local.set({ crab });
+export function getLevel(totXp: number) {
+    //model taken from MonkeyType
+    return 1 / 98 * (-151 + Math.sqrt(392 * totXp + 22801)) + 1;
 }
-
-export function shouldLevelUp(xp: number, level: number) {
-    return xp >= calcLevelUpXp(level);
-}
-
-export async function tryLevelUp() {
-    let level = await fetchLevel();
-    let xp = await fetchXp();
-    if(shouldLevelUp(xp, level)) {
-        updateLevel(level+1);
-        storeNewLevelUpXp(calcLevelUpXp(level+1));
-    }
-}
-
