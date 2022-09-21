@@ -1,7 +1,7 @@
 //Tab Detector
 //background.js
-import {isUrlBlocked} from "./Common/storage-utilities.js";
-import {SESSION_TIME_MINUTES, MAX_COIN} from "./Common/utilities.js";
+import {isUrlBlocked} from "./Common/storage-utilities";
+import {SESSION_TIME_MINUTES, MAX_COIN} from "./Common/utilities";
 
 
 chrome.runtime.onInstalled.addListener(function (e) {

@@ -1,7 +1,7 @@
-import { calcMinutes, calcSeconds, navToMainMenu } from "../Common/utilities.js";
-import { MAX_COIN } from "../Common/utilities.js";
-import { calcExpEarned, calcLevelUpXp, tryLevelUp, storeNewLevelUpXp } from "./xp-utilities.js";
-import { fetchFocusTime, fetchLevel, fetchXp } from "../Common/storage-utilities.js";
+import { calcMinutes, calcSeconds, navToMainMenu } from "../Common/utilities";
+import { MAX_COIN } from "../Common/utilities";
+import { calcExpEarned, calcLevelUpXp } from "./xp-utilities";
+import { fetchFocusTime, fetchLevel, fetchXp } from "../Common/storage-utilities";
 import { Crab } from "../Types";
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -17,9 +17,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     BTN_RETURN.addEventListener("click", () => {
         navToMainMenu();
     })
-
-    await tryLevelUp();
-
 })
 
 
