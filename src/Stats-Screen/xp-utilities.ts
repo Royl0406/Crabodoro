@@ -1,5 +1,5 @@
-import { fetchLevel, fetchFocusTime, fetchXp } from "../Common/storage-utilities";
-import { SESSION_TIME_MINUTES, MINUTE_TO_MS } from "../Common/utilities";
+import { fetchLevel, fetchFocusTime, fetchXp } from "../Common/storage-utilities.js";
+import { SESSION_TIME_MINUTES, MINUTE_TO_MS } from "../Common/utilities.js";
 import { Crab } from "../Types/crab";
 
 const MULTIPLIER = 100;
