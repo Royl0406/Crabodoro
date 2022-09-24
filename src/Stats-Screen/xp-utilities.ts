@@ -2,11 +2,12 @@ import { fetchLevel, fetchFocusTime, fetchXp } from "../Common/storage-utilities
 import { SESSION_TIME_MINUTES, MINUTE_TO_MS } from "../Common/utilities.js";
 import { Crab } from "../Types/crab";
 
-const MULTIPLIER = 100;
+
 export async function calcExpEarned() {
     let level = await fetchLevel();
     let percentTimeFocused = await calcPercentTimeFocused();
-    let xpEarned = MULTIPLIER * percentTimeFocused as number;
+    const monkeyTypeXpModel = (49 * (level - 1) + 100);
+    let xpEarned = monkeyTypeXpModel * percentTimeFocused as number;
     if(xpEarned < 0) {
         xpEarned = 0;
     }
@@ -28,6 +29,7 @@ async function storeExpEarned(xp: number) {
     chrome.storage.local.set({ crab });
 }
 
+//Not used
 export function calcLevelUpXp(level: number) {
     let prevLevel = level - 1;
     //model taken from MonkeyType
@@ -35,7 +37,7 @@ export function calcLevelUpXp(level: number) {
     return levelUpXP;
 }
 
-export function getLevel(totXp: number) {
+export function calcLevel(totXp: number) {
     //model taken from MonkeyType
     return 1 / 98 * (-151 + Math.sqrt(392 * totXp + 22801)) + 1;
 }
