@@ -39,5 +39,13 @@ export function calcLevelUpXp(level: number) {
 
 export function calcLevel(totXp: number) {
     //model taken from MonkeyType
-    return 1 / 98 * (-151 + Math.sqrt(392 * totXp + 22801)) + 1;
+    return Math.floor(1 / 98 * (-151 + Math.sqrt(392 * totXp + 22801)) + 1);
+}
+
+export async function calcTotalXpForLevel(level: number) {
+    let xpSum = 0;
+    for(let i = level; i > 0; i--) {
+        xpSum += await calcLevelUpXp(i);
+    }
+    return xpSum;
 }

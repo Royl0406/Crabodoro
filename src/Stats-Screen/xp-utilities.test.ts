@@ -1,14 +1,16 @@
 jest.mock("../Common/storage-utilities");
 
-import { calcExpEarned, calcLevelUpXp, calcPercentTimeFocused, shouldLevelUp } from "./xp-utilities";
+import { calcExpEarned, calcLevelUpXp, calcPercentTimeFocused} from "./xp-utilities";
 import { fetchFocusTime, fetchLevel } from "../Common/storage-utilities";
 
-
+declare global {
+    export const chrome: any;
+}
 
 describe("xp-utilities", () => {
     beforeAll(() => {
-        fetchFocusTime.mockResolvedValue(12000);
-        fetchLevel.mockResolvedValue(1);
+        (fetchFocusTime as any).mockResolvedValue(12000);
+        (fetchLevel as any).mockResolvedValue(1);
     })
     afterAll(() => {
         jest.restoreAllMocks();
@@ -30,14 +32,6 @@ describe("xp-utilities", () => {
     describe("calcLevelUpXp", () => {
         it("calculates the correct new xp to level up", () => {
             expect(calcLevelUpXp(2)).toBe(240);
-        })
-    })
-    describe("shouldLevelUp", () => {
-        it("returns true when xp > xp required to level up", () => {
-            expect(shouldLevelUp(1000, 1)).toBe(true);
-        });
-        it("returns false when xp < xp required to level up", () => {
-            expect(shouldLevelUp(1, 999)).toBe(false);
         })
     })
 })

@@ -46,5 +46,11 @@ export async function fetchXp() {
     return crab.xp;
 }
 
+export async function fetchName() {
+    let result = await chrome.storage.local.get(['crab']);
+    let crab = result.crab as Crab;
+    return crab.name as String;
+}
+
 
 
