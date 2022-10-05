@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../Commmon/theme.css"> 
+    <link rel="stylesheet" href="../Common/theme.css">
     <script src="shop.js" type="module"></script>
+
+    <style>
+        body {
+            width: 350px;
+            height: 440px;
+            margin: 8px;
+
+            background-color: rgba(235, 138, 24, 0.36);
+        }
+    </style>
 </head>
 
 <body>
-    <button id="shop-crabSpace" class="button-text navigation-button">Crab Space</button>
+
+    <div class="row space-between">
+        <div>
+            <div class="align-top-left-corner">coin</div>
+            <div>food count</div>
+        </div>
+        <button id="shop-crabSpace" class="button-text navigation-button">Crab Space</button>
+    </div>
+    <div class="row center">
+        <div class="column center">
+            <input type="image" src="../../Assets/pizza.png"></input>
+            <div>food name and price</div>
+        </div>
+    </div>
 
 </body>
 </html>

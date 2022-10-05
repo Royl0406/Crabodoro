@@ -28,10 +28,25 @@
 
 .column {
     display: flex;
-    flex: 1 1 auto;
+    /*flex: 1 1 auto;*/
     flex-direction: column;
 }
 
 .space-between {
     justify-content: space-between;
+}
+
+.align-top-left-corner {
+    margin-top: 0; 
+    margin-bottom: 10px;
+}
+
+.center {
+    align-content: center;
+    justify-content: center;
+}
+
+.img-button {
+    width: fit-content;
+    height: fit-content;
 }
