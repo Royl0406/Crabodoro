@@ -6,7 +6,9 @@ interface ShopItem {
     img: string;
 }
 
-let inventory: ShopItem[] = [{name: "Pizza", cost: 300, img: "../../Assets/pizza.png"}];
+let inventory: ShopItem[] = [
+    {name: "Pizza", cost: 300, img: "../../Assets/pizza.png"}
+];
 
 document.addEventListener("DOMContentLoaded", () => {
     const SHOP_ITEM_HEAD = document.getElementById("shop-item-head");
