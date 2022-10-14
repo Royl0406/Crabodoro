@@ -52,5 +52,21 @@ export async function fetchName() {
     return crab.name as String;
 }
 
+export async function fetchTotCoins() {
+    let result = await chrome.storage.local.get(['crab']);
+    let crab = result.crab as Crab;
+    return crab.coin as number;
+}
+
+export async function addToTotCoins(coin) {
+    let result = await chrome.storage.local.get(['crab']);
+    let crab = result.crab as Crab;
+    crab.coin = crab.coin + coin;
+    console.log("storeCoin: " + crab.coin);
+    chrome.storage.local.set({ crab });
+
+    return crab.coin;
+}
+
 
 

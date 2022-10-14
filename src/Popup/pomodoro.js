@@ -12,7 +12,6 @@ function startUpdateLoop() {
         chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'totalDistractedTime'], function (result) {
             let remainingTimeMs = calcRemainingTime(result.startTime, result.TOTAL_TIME_MS);
             if(remainingTimeMs < 0) {
-                console.log(totCoinsEarned);
                 chrome.storage.local.set({ totCoinsEarned });
                 navToStats();
             }
