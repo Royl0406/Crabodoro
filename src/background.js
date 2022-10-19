@@ -89,7 +89,7 @@ function addTabListeners() {
    });
 }
 
-let startGame = () => {
+let startGame = async () => {
    addTabListeners();
 
    const MILLISECONDS_PER_SECOND = 1000;
@@ -103,16 +103,13 @@ let startGame = () => {
    let isDistracted = false;
 
    //update text in html file
-   chrome.storage.local.set({ startTime })
-   chrome.storage.local.set({ TOTAL_TIME_MS });
-   chrome.storage.local.set({ totalDistractedTime });
-   chrome.storage.local.set({ isDistracted });
+   await chrome.storage.local.set({ startTime, TOTAL_TIME_MS, totalDistractedTime, isDistracted });
 }
 
 chrome.runtime.onMessage.addListener(
-   function (request, sender, sendResponse) {
+   async function (request, sender, sendResponse) {
       if (request === "start button clicked") {
-         startGame();
+         await startGame();
       }
       //Message handler must call a response callback
       sendResponse();

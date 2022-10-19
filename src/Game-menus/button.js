@@ -4,9 +4,9 @@ window.onload = () => {
   var myButton = document.getElementById('card-unrated');
   var crabSpaceBtn = document.getElementById("crab-space");
 
-  myButton.onclick = () => {
+  myButton.onclick = async () => {
+    await chrome.runtime.sendMessage("start button clicked");
     navToPomodoro();
-    chrome.runtime.sendMessage("start button clicked");
   };
 
   crabSpaceBtn.onclick = () => {
