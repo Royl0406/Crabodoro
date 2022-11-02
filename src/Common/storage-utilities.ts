@@ -68,5 +68,29 @@ export async function addToTotCoins(coin) {
     return crab.coin;
 }
 
+export async function fetchFoodCount() {
+    let result = await chrome.storage.local.get(['crab']);
+    let crab = result.crab as Crab;
+    return crab.food
+}
+
+export async function updateFoodCount(change: number) {
+    let result = await chrome.storage.local.get(['crab']);
+    let crab = result.crab as Crab;
+    crab.food = crab.food + change;
+    chrome.storage.local.set({ crab });
+    return crab.food;
+}
+
+export function incrementFoodCount() {
+    return updateFoodCount(1);
+}
+
+export function decrementFoodCount() {
+    return updateFoodCount(-1);
+}
+
+
+
 
 

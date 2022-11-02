@@ -1,5 +1,5 @@
 import { navToShop, navToMainMenu } from '../Common/utilities.js'
-import {fetchLevel, fetchName, fetchXp} from '../Common/storage-utilities.js';
+import {decrementFoodCount, fetchFoodCount, fetchLevel, fetchName, fetchXp} from '../Common/storage-utilities.js';
 import { calcLevel, calcLevelUpXp, calcTotalXpForLevel } from '../Stats-Screen/xp-utilities.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const LEVEL = document.getElementById("level");
     const NAME = document.getElementById("crab-name");
     const XP_BAR = document.getElementsByClassName("xp-actual")[0] as HTMLElement;
+    const FOOD_DISPLAY = document.getElementById("food-display");
 
 
 
@@ -19,8 +20,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         navToShop();
     })
 
-    BTN_FEED.addEventListener("click", () => {
+    BTN_FEED.addEventListener("click", async () => {
+        if(await fetchFoodCount() === 0) {
+            alert("You don't have enough pizza!");
+            return;
+        }
         alert("fed");
+        FOOD_DISPLAY.innerHTML = (await decrementFoodCount()).toString();
     })
     let totalXp = await fetchXp();
     let currentLevel = await calcLevel(totalXp);
@@ -29,9 +35,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     let totalXpForPrevLevel = await calcTotalXpForLevel(prevLevel);
     let xpOnCurrentLevel = totalXp - totalXpForPrevLevel;
     let xpBarPercentage = xpOnCurrentLevel / xpToNextLevel * 100;
+    let totalFood = await fetchFoodCount();
 
     NAME.innerHTML = (await fetchName()).toString();
     LEVEL.innerHTML += currentLevel;
+    FOOD_DISPLAY.innerHTML = totalFood.toString();
 
     console.log("tot xp: "+ totalXp);
     console.log("totxpforCurrentLevel: " + totalXpForPrevLevel);

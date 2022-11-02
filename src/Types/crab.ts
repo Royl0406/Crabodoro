@@ -3,4 +3,5 @@ export interface Crab {
     level: number;
     xp: number;
     coin: number;
+    food: number;
 }

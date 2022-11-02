@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
             name: input.value,
             level: 1,
             xp: 0,
-            coin: 0
+            coin: 0,
+            food: 0
         }
 
         chrome.storage.local.set({ crab });
