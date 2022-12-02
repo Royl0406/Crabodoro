@@ -90,6 +90,27 @@ export function decrementFoodCount() {
     return updateFoodCount(-1);
 }
 
+export async function storeTotSessions(sessions: number) {
+    await chrome.storage.local.set({totSessions: sessions, remainingSessions: sessions});
+}
+
+export async function fetchTotSessions() {
+    let result = await chrome.storage.local.get(['totSessions']);
+    return result.totSessions as number;
+}
+
+export async function storeRemainingSessions(newRemainingSessions: number) {
+    await chrome.storage.local.set({remainingSessions: newRemainingSessions});
+}
+export async function fetchRemainingSessions() {
+    let result = await chrome.storage.local.get(['remainingSessions']);
+    return result.remainingSessions as number;
+}
+
+export async function decrementRemainingSessions() {
+    let decrementedRemainingSessions = await fetchRemainingSessions() - 1;
+    await storeRemainingSessions(decrementedRemainingSessions);
+}
 
 
 
