@@ -1,4 +1,5 @@
-import { navToStats } from "../Common/utilities.js";
+import { decrementRemainingSessions, fetchRemainingSessions } from "../Common/storage-utilities.js";
+import { navToBreak, navToCrabSpace, navToStats } from "../Common/utilities.js";
 import { calcMinutes } from "../Common/utilities.js";
 import { calcSeconds } from "../Common/utilities.js";
 
@@ -9,17 +10,29 @@ startUpdateLoop();
 
 function startUpdateLoop() {
     setInterval(() => {
-        chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'totalDistractedTime'], function (result) {
+        chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'totalDistractedTime'], async function (result) {
             let remainingTimeMs = calcRemainingTime(result.startTime, result.TOTAL_TIME_MS);
             if(remainingTimeMs < 0) {
-                chrome.storage.local.set({ totCoinsEarned });
-                navToStats();
+                await finishPomodoro();
             }
             displayRemainingTime(remainingTimeMs);
             displayCoinCount(calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime));
             totCoinsEarned = calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.totalDistractedTime);
         });
     }, 100);
+}
+
+async function finishPomodoro() {
+  chrome.storage.local.set({ totCoinsEarned });
+  
+  let remainingSessions = await decrementRemainingSessions();
+
+  if(remainingSessions > 0) {
+    navToBreak();
+  }
+  else {
+    navToStats();
+  }
 }
 
 function displayCoinCount(coinCount) {

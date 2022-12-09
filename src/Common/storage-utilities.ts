@@ -107,9 +107,10 @@ export async function fetchRemainingSessions() {
     return result.remainingSessions as number;
 }
 
-export async function decrementRemainingSessions() {
+export async function decrementRemainingSessions(): Promise<number> {
     let decrementedRemainingSessions = await fetchRemainingSessions() - 1;
     await storeRemainingSessions(decrementedRemainingSessions);
+    return decrementedRemainingSessions;
 }
 
 

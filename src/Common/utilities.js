@@ -22,26 +22,31 @@ export function changePopupLocation (location) {
 }
 
 export function navToMainMenu() {
-  const LOCATION = "/dist/Game-menus/main.html";
-  changePopupLocation(LOCATION);
+  const location = "/dist/Game-menus/main.html";
+  changePopupLocation(location);
 }
 
 export function navToShop() {
-  const LOCATION = "/dist/Shop/shop.html";
-  changePopupLocation(LOCATION);
+  const location = "/dist/Shop/shop.html";
+  changePopupLocation(location);
 }
 
 export function navToCrabSpace() {
-  const LOCATION = "/dist/Crab-Space/crabSpace.html";
-  changePopupLocation(LOCATION);
+  const location = "/dist/Crab-Space/crabSpace.html";
+  changePopupLocation(location);
 }
 
 export function navToPomodoro() {
-  const LOCATION = "/dist/Popup/pomodoro.html";
-  changePopupLocation(LOCATION);
+  const location = "/dist/Popup/pomodoro.html";
+  changePopupLocation(location);
 }
 
 export function navToStats() {
-  const LOCATION = "/dist/Stats-Screen/stats.html";
-  changePopupLocation(LOCATION);
+  const location = "/dist/Stats-Screen/stats.html";
+  changePopupLocation(location);
+}
+
+export function navToBreak() {
+  const location = "/dist/Break-menu/break.html";
+  changePopupLocation(location);
 }
