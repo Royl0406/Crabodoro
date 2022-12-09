@@ -1,7 +1,7 @@
 //Tab Detector
 //background.js
 import {isUrlBlocked} from "./Common/storage-utilities.js";
-import {SESSION_TIME_MINUTES, MAX_COIN} from "./Common/utilities.js";
+import {SESSION_TIME_MINUTES, MAX_COIN, MINUTE_TO_MS} from "./Common/utilities.js";
 
 
 chrome.runtime.onInstalled.addListener(function (e) {
@@ -92,9 +92,7 @@ function addTabListeners() {
 let startGame = async () => {
    addTabListeners();
 
-   const MILLISECONDS_PER_SECOND = 1000;
-   const SECONDS_PER_MINUTE = 60;
-   const TOTAL_TIME_MS = SESSION_TIME_MINUTES * SECONDS_PER_MINUTE * MILLISECONDS_PER_SECOND;
+   const TOTAL_TIME_MS = SESSION_TIME_MINUTES * MINUTE_TO_MS;
    const COIN_RATE = MAX_COIN / TOTAL_TIME_MS;
 
    // Current time in milliseconds (from the epoch)
