@@ -6,12 +6,11 @@ window.onload = () => {
   var crabSpaceBtn = document.getElementById("crab-space");
 
   myButton.onclick = async () => {
-    await chrome.runtime.sendMessage("start button clicked");
+   
     //To-do: update with the actual value on the html page later
     const numSessions = 2;
-
     await storeTotSessions(numSessions);
-    navToPomodoro();
+    await navToPomodoro();
   };
 
   crabSpaceBtn.onclick = () => {
