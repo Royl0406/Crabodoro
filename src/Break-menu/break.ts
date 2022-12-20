@@ -7,11 +7,18 @@ window.onload = async () => {
     const btnEndBreak = document.getElementById("btn-skip");
 
     let startTime = (new Date()).getTime();
-    let totalBreakMin = 5;
+    let totalBreakMin = 0.1;
     let totalBreakTimeMs = totalBreakMin * MINUTE_TO_MS;
-    setInterval(() => {
+    let intervalId = setInterval(() => {
         let remainingTimeMs = calcRemainingTime(startTime, totalBreakTimeMs);
-        displayRemainingTime(remainingTimeDisplay, remainingTimeMs);
+        if(remainingTimeMs <= 0) {
+            remainingTimeDisplay.innerHTML = "Time's up";
+            btnEndBreak.innerHTML = "Next Session";
+            clearInterval(intervalId);
+        }
+        else {
+            displayRemainingTime(remainingTimeDisplay, remainingTimeMs);
+        }
     }, 100);
 
     remainingSessDisplay.innerHTML = (await fetchRemainingSessions()).toString();
