@@ -56,7 +56,9 @@ export function navToStats() {
   changePopupLocation(location);
 }
 
-export function navToBreak() {
+export async function navToBreak() {
   const location = "/dist/Break-menu/break.html";
+  let breakStartTime = (new Date()).getTime();
+  await chrome.storage.local.set({ breakStartTime });
   changePopupLocation(location);
 }

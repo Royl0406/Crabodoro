@@ -6,8 +6,8 @@ window.onload = async () => {
     const remainingTimeDisplay = document.getElementById("remaining-break-time");
     const btnEndBreak = document.getElementById("btn-skip");
 
-    let startTime = (new Date()).getTime();
-    let totalBreakMin = 0.1;
+    let startTime = (await chrome.storage.local.get(['breakStartTime'])).breakStartTime;
+    let totalBreakMin = 1;
     let totalBreakTimeMs = totalBreakMin * MINUTE_TO_MS;
     let intervalId = setInterval(() => {
         let remainingTimeMs = calcRemainingTime(startTime, totalBreakTimeMs);
