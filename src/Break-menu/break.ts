@@ -1,6 +1,7 @@
 import { calcRemainingTime, displayRemainingTime, MINUTE_TO_MS } from "../Common/utilities.js";
+import { fetchRemainingSessions } from "../Common/storage-utilities.js";
 
-window.onload = () => {
+window.onload = async () => {
     const remainingSessDisplay = document.getElementById("remaining-sessions");
     const remainingTimeDisplay = document.getElementById("remaining-break-time");
     let startTime = (new Date()).getTime();
@@ -11,6 +12,9 @@ window.onload = () => {
         displayRemainingTime(remainingTimeDisplay, remainingTimeMs);
     }, 100);
 
+
+    remainingSessDisplay.innerHTML = (await fetchRemainingSessions()).toString();
 }
+
 
   
