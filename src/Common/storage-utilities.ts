@@ -1,11 +1,12 @@
 import { Crab } from "../Types";
+import { calcRemainingTime, MINUTE_TO_MS } from "./utilities.js";
 
 //Checks if the url matches the regex pattern of urls stored in the blocklist
 export function isUrlBlocked(inputUrl, blockedList) {
     for (let i = 0; i < blockedList.length; i++) {
         let url = blockedList[i];
         let regExp = convertUrlToRegExp(url)
-        console.log("url: " + url);
+        console.log("url: " + inputUrl);
         if (regExp.test(inputUrl)) {
             console.log("website found in block list");
             return true;
@@ -111,6 +112,13 @@ export async function decrementRemainingSessions(): Promise<number> {
     let decrementedRemainingSessions = await fetchRemainingSessions() - 1;
     await storeRemainingSessions(decrementedRemainingSessions);
     return decrementedRemainingSessions;
+}
+
+export async function calcRemainingBreakTime(): Promise<number> {
+    let startTime = (await chrome.storage.local.get(['breakStartTime'])).breakStartTime as number;
+    let totalBreakMin = 1;
+    let totalBreakTimeMs = totalBreakMin * MINUTE_TO_MS;
+    return calcRemainingTime(startTime, totalBreakTimeMs);
 }
 
 

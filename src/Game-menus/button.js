@@ -8,7 +8,7 @@ window.onload = () => {
   myButton.onclick = async () => {
    
     //To-do: update with the actual value on the html page later
-    const numSessions = 2;
+    const numSessions = 4;
     await storeTotSessions(numSessions);
     await navToPomodoro();
   };
