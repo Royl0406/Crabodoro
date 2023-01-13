@@ -21,6 +21,7 @@ window.onload = async () => {
 
     remainingSessDisplay.innerHTML = (await fetchRemainingSessions()).toString();
     btnEndBreak.addEventListener("click", async () => {
+        await chrome.storage.local.set({breakStartTime: null});
         await navToPomodoro();
     })
 }

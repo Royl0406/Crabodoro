@@ -115,7 +115,8 @@ export async function decrementRemainingSessions(): Promise<number> {
 }
 
 export async function calcRemainingBreakTime(): Promise<number> {
-    let startTime = (await chrome.storage.local.get(['breakStartTime'])).breakStartTime as number;
+    let startTime = (await chrome.storage.local.get(['breakStartTime'])).breakStartTime as number | null;
+    if(startTime === null) return 0;
     let totalBreakMin = 1;
     let totalBreakTimeMs = totalBreakMin * MINUTE_TO_MS;
     return calcRemainingTime(startTime, totalBreakTimeMs);

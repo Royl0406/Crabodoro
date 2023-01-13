@@ -1,6 +1,6 @@
 //Tab Detector
 //background.js
-import {/*calcRemainingBreakTime,*/ isUrlBlocked} from "./Common/storage-utilities.js";
+import {calcRemainingBreakTime, isUrlBlocked} from "./Common/storage-utilities.js";
 import {SESSION_TIME_MINUTES, MAX_COIN, MINUTE_TO_MS} from "./Common/utilities.js";
 
 
@@ -37,9 +37,9 @@ function showScreenBlocker(tabId) {
 
 async function urlChangeHandler(url, tabId) {
    let isDistracted = false;
-   //let remainingBreakTimeMs = await calcRemainingBreakTime();
+   let remainingBreakTimeMs = await calcRemainingBreakTime();
    let { isDistracted: prevIsDistracted } = await chrome.storage.local.get(['isDistracted']);
-   if (await isUrlDistracting(url) /*&& remainingBreakTimeMs <= 0*/) {
+   if (await isUrlDistracting(url) && remainingBreakTimeMs <= 0) {
       showScreenBlocker(tabId);
       isDistracted = true;
    }
