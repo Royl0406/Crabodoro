@@ -35,6 +35,13 @@ function showScreenBlocker(tabId) {
    });
 }
 
+function removeScreenBlocker(tabId) {
+   chrome.scripting.executeScript({
+      target: { tabId: tabId, allFrames: true },
+      files: ['./dist/Screen-Blocker/warning-tab-rmv.js']
+   })
+}
+
 async function urlChangeHandler(url, tabId) {
    let isDistracted = false;
    let remainingBreakTimeMs = await calcRemainingBreakTime();
@@ -42,6 +49,10 @@ async function urlChangeHandler(url, tabId) {
    if (await isUrlDistracting(url) && remainingBreakTimeMs <= 0) {
       showScreenBlocker(tabId);
       isDistracted = true;
+   }
+   if (remainingBreakTimeMs > 0) {
+      removeScreenBlocker(tabId);
+      isDistracted = false;
    }
    if (prevIsDistracted !== isDistracted) {
       //Not distracted anymore
