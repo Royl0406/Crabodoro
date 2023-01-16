@@ -40,6 +40,8 @@ function removeScreenBlocker(tabId) {
       target: { tabId: tabId, allFrames: true },
       files: ['./dist/Screen-Blocker/warning-tab-rmv.js']
    })
+
+   chrome.tabs.reload(tabId);
 }
 
 async function urlChangeHandler(url, tabId) {
@@ -50,7 +52,9 @@ async function urlChangeHandler(url, tabId) {
       showScreenBlocker(tabId);
       isDistracted = true;
    }
-   if (remainingBreakTimeMs > 0) {
+   if (remainingBreakTimeMs > 0 && await isUrlDistracting(url)) {
+      console.log("url: " + url);
+      console.log(isUrlDistracting(url));
       removeScreenBlocker(tabId);
       isDistracted = false;
    }
