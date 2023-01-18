@@ -41,7 +41,7 @@ function removeScreenBlocker(tabId) {
       files: ['./dist/Screen-Blocker/warning-tab-rmv.js']
    })
 
-   chrome.tabs.reload(tabId);
+   //chrome.tabs.reload(tabId);
 }
 
 async function urlChangeHandler(url, tabId) {
@@ -53,8 +53,6 @@ async function urlChangeHandler(url, tabId) {
       isDistracted = true;
    }
    if (remainingBreakTimeMs > 0 && await isUrlDistracting(url)) {
-      console.log("url: " + url);
-      console.log(isUrlDistracting(url));
       removeScreenBlocker(tabId);
       isDistracted = false;
    }
@@ -84,25 +82,25 @@ let isOnTask = async () => {
    return !result.isDistracted;
 }
 
-function addTabListeners() {
-   chrome.tabs.onActivated.addListener(function (activeInfo) {
-      console.log("event listener");
-      chrome.tabs.get(activeInfo.tabId, async function (tab) {
-         let currentUrl = tab.url;
-         let currentTabId = tab.id;
-         await urlChangeHandler(currentUrl, currentTabId);
-         console.log("urlChange");
-      });
+async function onActivatedTabListener(activeInfo) {
+   chrome.tabs.get(activeInfo.tabId, async function (tab) {
+      let currentUrl = tab.url;
+      let currentTabId = tab.id;
+      await urlChangeHandler(currentUrl, currentTabId);
    });
+}
 
-   chrome.tabs.onUpdated.addListener(async function(tabId, change, tab) {
-      if (tab.active && change.url) {
-         console.log("event listener-update");
-         let newUrl = change.url;
-         await urlChangeHandler(newUrl, tabId);
-         console.log("urlChange");
-      }
-   });
+async function onUpdatedTabListener(tabId, change, tab) {
+   if (tab.active && change.url) {
+      let newUrl = change.url;
+      await urlChangeHandler(newUrl, tabId);
+   }
+}
+
+function addTabListeners() {
+   chrome.tabs.onActivated.addListener(onActivatedTabListener);
+
+   chrome.tabs.onUpdated.addListener(onUpdatedTabListener);
 }
 
 let startGame = async () => {
