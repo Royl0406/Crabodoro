@@ -53,20 +53,32 @@ export async function fetchName() {
     return crab.name as String;
 }
 
-export async function fetchTotCoins() {
+export async function fetchBankCoins() {
     let result = await chrome.storage.local.get(['crab']);
     let crab = result.crab as Crab;
     return crab.coin as number;
 }
 
-export async function addToTotCoins(coin) {
+export async function addToBank(coin) {
     let result = await chrome.storage.local.get(['crab']);
     let crab = result.crab as Crab;
     crab.coin = crab.coin + coin;
-    console.log("storeCoin: " + crab.coin);
     chrome.storage.local.set({ crab });
 
     return crab.coin;
+}
+
+export async function addToTotGameCoins(coin) {
+    let totCoinsInGame = await fetchGameCoins();
+    console.log("before add: " + totCoinsInGame);
+    totCoinsInGame = totCoinsInGame + coin;
+    console.log("after: " + totCoinsInGame);
+    await chrome.storage.local.set({ totCoinsInGame });
+}
+
+export async function fetchGameCoins() {
+    let result = await chrome.storage.local.get(['totCoinsInGame']);
+    return result.totCoinsInGame as number;
 }
 
 export async function fetchFoodCount() {

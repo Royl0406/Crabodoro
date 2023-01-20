@@ -60,10 +60,10 @@ async function urlChangeHandler(url, tabId) {
       //Not distracted anymore
       if (isDistracted === false) {
          let stopTime = (new Date()).getTime();
-         let { totalDistractedTime, distractedStartTime } = await chrome.storage.local.get(['totalDistractedTime', 'distractedStartTime']);
+         let { sessionDistractedTime, distractedStartTime } = await chrome.storage.local.get(['totalDistractedTime', 'distractedStartTime']);
          let elapsed = stopTime - distractedStartTime;
-         totalDistractedTime += elapsed;
-         chrome.storage.local.set({ totalDistractedTime });
+         sessionDistractedTime += elapsed;
+         chrome.storage.local.set({ sessionDistractedTime });
       }
       //Became distracted
       else {
@@ -103,30 +103,56 @@ function addTabListeners() {
    chrome.tabs.onUpdated.addListener(onUpdatedTabListener);
 }
 
-let startGame = async () => {
+async function startGame() {
    addTabListeners();
-
+   
    const TOTAL_TIME_MS = SESSION_TIME_MINUTES * MINUTE_TO_MS;
-   const COIN_RATE = MAX_COIN / TOTAL_TIME_MS;
 
-   // Current time in milliseconds (from the epoch)
+   let totCoinsInGame = 0;
+   await startSession();
+
+   await chrome.storage.local.set({ 
+      TOTAL_TIME_MS,
+      totCoinsInGame
+   });
+}
+
+async function startSession() {
    let startTime = (new Date()).getTime();
    let totalDistractedTime = 0;
    let isDistracted = false;
 
-   //update text in html file
-   await chrome.storage.local.set({ startTime, TOTAL_TIME_MS, totalDistractedTime, isDistracted });
+   await chrome.storage.local.set({
+      startTime,
+      totalDistractedTime,
+      isDistracted
+   });
 }
 
 chrome.runtime.onMessage.addListener(
    async function (request, sender, sendResponse) {
-      if (request === "start button clicked") {
+      if (request === "start game") {
          await startGame();
+      }
+      else if (request === "start session") {
+         await startSession();
+      }
+      else if (request === "end game") {
+         endGame();
       }
       //Message handler must call a response callback
       sendResponse();
    }
 );
+
+function removeTabListeners() {
+   chrome.tabs.onActivated.removeListener(onActivatedTabListener);
+   chrome.tabs.onUpdated.removeListener(onUpdatedTabListener);
+}
+
+function endGame() {
+   removeTabListeners();
+}
 
 
 

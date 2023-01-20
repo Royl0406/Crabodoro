@@ -1,5 +1,5 @@
 import { navToCrabSpace } from '../Common/utilities.js'
-import { fetchTotCoins, addToTotCoins, fetchFoodCount, incrementFoodCount } from '../Common/storage-utilities.js'
+import { fetchBankCoins, addToBank, fetchFoodCount, incrementFoodCount } from '../Common/storage-utilities.js'
 
 interface ShopItem {
     name: string;
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const COIN_DIV = document.getElementById("coin-display");
     const FOOD_DIV = document.getElementById("food-display");
 
-    let coinCount = await fetchTotCoins();
+    let coinCount = await fetchBankCoins();
     let foodCount = await fetchFoodCount();
     COIN_DIV.textContent = "Coin count: " + coinCount;
     FOOD_DIV.textContent = "Food count: " + foodCount;
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 return;
             }
             alert("-$" + item.cost + "\n Item purchased: " + item.name);
-            coinCount = await addToTotCoins(-item.cost);
+            coinCount = await addToBank(-item.cost);
             foodCount = await incrementFoodCount();
 
             COIN_DIV.textContent = "Coin count: " + coinCount;

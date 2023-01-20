@@ -47,7 +47,6 @@ export function navToCrabSpace() {
 
 export async function navToPomodoro() {
   const location = "/dist/Popup/pomodoro.html";
-  await chrome.runtime.sendMessage("start button clicked");
   changePopupLocation(location);
 }
 

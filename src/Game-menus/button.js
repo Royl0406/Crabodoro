@@ -10,6 +10,8 @@ window.onload = () => {
     //To-do: update with the actual value on the html page later
     const numSessions = 4;
     await storeTotSessions(numSessions);
+
+    await chrome.runtime.sendMessage("start game");
     await navToPomodoro();
   };
 
