@@ -36,8 +36,9 @@ export async function fetchLevel() {
 }
 
 export async function fetchTotalFocusTime() {
-    let result = await chrome.storage.local.get(['sessionTimeMs', 'totalDistractedTime']);
-    let focusedTime = result.sessionTimeMs - result.totalDistractedTime;
+    let result = await chrome.storage.local.get(['sessionTimeMs','sessionsElapsed', 'totalDistractedTime']);
+    let totalTimeElapsed = result.sessionTimeMs * result.sessionsElapsed;
+    let focusedTime = totalTimeElapsed - result.totalDistractedTime;
     return focusedTime;
 }
 
@@ -45,6 +46,16 @@ export async function fetchXp() {
     let result = await chrome.storage.local.get(['crab']);
     let crab =  result.crab as Crab;
     return crab.xp;
+}
+
+export async function incrementSessionsElapsed() {
+    let sessionsElapsed = (await fetchSessionsElapsed()) + 1;
+    chrome.storage.local.set({sessionsElapsed});
+}
+
+export async function fetchSessionsElapsed() {
+    let result = await chrome.storage.local.get(['sessionsElapsed']);
+    return result.sessionsElapsed as number;
 }
 
 export async function fetchName() {

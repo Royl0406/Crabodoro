@@ -110,12 +110,14 @@ async function startGame() {
 
    let totCoinsInGame = 0;
    let totalDistractedTime = 0;
+   let sessionsElapsed = 0;
    await startSession();
 
    await chrome.storage.local.set({ 
       sessionTimeMs,
       totCoinsInGame,
-      totalDistractedTime
+      totalDistractedTime,
+      sessionsElapsed
    });
 }
 

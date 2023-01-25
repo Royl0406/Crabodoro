@@ -1,4 +1,4 @@
-import { addToTotGameCoins, decrementRemainingSessions } from "../Common/storage-utilities.js";
+import { addToTotGameCoins, decrementRemainingSessions, incrementSessionsElapsed } from "../Common/storage-utilities.js";
 import { navToBreak, navToStats, displayTime, calcSessionRemainingTime } from "../Common/utilities.js";
 
 
@@ -36,6 +36,7 @@ async function finishPomodoro() {
   await chrome.storage.local.set({totalDistractedTime});
 
   await addToTotGameCoins(coinsEarnedThisSession);
+  await incrementSessionsElapsed();
 
   if(remainingSessions > 0) {
     navToBreak();
