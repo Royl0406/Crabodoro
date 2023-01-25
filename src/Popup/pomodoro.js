@@ -27,13 +27,13 @@ async function finishPomodoro() {
   
   let remainingSessions = await decrementRemainingSessions();
 
-  let result = chrome.storage.local.get(['sessionDistractedTime', 'totDistractedTime']);
+  let result = chrome.storage.local.get(['sessionDistractedTime', 'totalDistractedTime']);
   if(result.sessionDistractedTime === 0) {
     coinsEarnedThisSession = MAX_COIN;
   }
 
-  let totDistractedTime = result.totDistractedTime + result.sessionDistractedTime;
-  await chrome.storage.local.set({totDistractedTime});
+  let totalDistractedTime = result.totalDistractedTime + result.sessionDistractedTime;
+  await chrome.storage.local.set({totalDistractedTime});
 
   await addToTotGameCoins(coinsEarnedThisSession);
 
