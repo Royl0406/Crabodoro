@@ -1,6 +1,6 @@
 import { calcMinutes, calcSeconds, navToMainMenu, MAX_COIN } from "../Common/utilities.js";
-import { calcExpEarned } from "./xp-utilities.js";
-import { fetchFocusTime, addToBank, fetchGameCoins } from "../Common/storage-utilities.js";
+import { calcTotalExpEarned } from "./xp-utilities.js";
+import { fetchTotalFocusTime, addToBank, fetchGameCoins } from "../Common/storage-utilities.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const COIN_EARNED = document.getElementById("total-coin") as HTMLElement;
@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     const XP_Earned = document.getElementById("total-xp") as HTMLElement;
     const BTN_RETURN = document.getElementById("nav-main") as HTMLElement;
 
-    FOCUS_TIME.innerHTML += displayTime(await fetchFocusTime());
+    FOCUS_TIME.innerHTML += displayTime(await fetchTotalFocusTime());
     COIN_EARNED.innerHTML += await fetchGameCoins();
-    XP_Earned.innerHTML += await calcExpEarned();
+    XP_Earned.innerHTML += await calcTotalExpEarned();
 
     BTN_RETURN.addEventListener("click", () => {
         navToMainMenu();

@@ -60,7 +60,7 @@ async function urlChangeHandler(url, tabId) {
       //Not distracted anymore
       if (isDistracted === false) {
          let stopTime = (new Date()).getTime();
-         let { sessionDistractedTime, distractedStartTime } = await chrome.storage.local.get(['totalDistractedTime', 'distractedStartTime']);
+         let { sessionDistractedTime, distractedStartTime } = await chrome.storage.local.get(['sessionDistractedTime', 'distractedStartTime']);
          let elapsed = stopTime - distractedStartTime;
          sessionDistractedTime += elapsed;
          chrome.storage.local.set({ sessionDistractedTime });
@@ -109,22 +109,24 @@ async function startGame() {
    const TOTAL_TIME_MS = SESSION_TIME_MINUTES * MINUTE_TO_MS;
 
    let totCoinsInGame = 0;
+   let totDistractedTime = 0;
    await startSession();
 
    await chrome.storage.local.set({ 
       TOTAL_TIME_MS,
-      totCoinsInGame
+      totCoinsInGame,
+      totDistractedTime
    });
 }
 
 async function startSession() {
    let startTime = (new Date()).getTime();
-   let totalDistractedTime = 0;
+   let sessionDistractedTime = 0;
    let isDistracted = false;
 
    await chrome.storage.local.set({
       startTime,
-      totalDistractedTime,
+      sessionDistractedTime,
       isDistracted
    });
 }

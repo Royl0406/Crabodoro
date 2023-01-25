@@ -1,7 +1,7 @@
 jest.mock("../Common/storage-utilities");
 
-import { calcExpEarned, calcLevelUpXp, calcPercentTimeFocused} from "./xp-utilities";
-import { fetchFocusTime, fetchLevel } from "../Common/storage-utilities";
+import { calcTotalExpEarned, calcLevelUpXp, calcTotalPercentTimeFocused} from "./xp-utilities";
+import { fetchTotalFocusTime, fetchLevel } from "../Common/storage-utilities";
 
 declare global {
     export const chrome: any;
@@ -9,7 +9,7 @@ declare global {
 
 describe("xp-utilities", () => {
     beforeAll(() => {
-        (fetchFocusTime as any).mockResolvedValue(12000);
+        (fetchTotalFocusTime as any).mockResolvedValue(12000);
         (fetchLevel as any).mockResolvedValue(1);
     })
     afterAll(() => {
@@ -18,13 +18,13 @@ describe("xp-utilities", () => {
     
     describe("calcPercentTimeFocused", () => {
         it("calculates the correct percentage", async () => {
-            expect(await calcPercentTimeFocused()).toBe(1);
+            expect(await calcTotalPercentTimeFocused()).toBe(1);
         })
     })
     describe("calcExpEarned", () => {
         it("calculates the correct xp earned", async () => {
             chrome.storage.local.get.mockResolvedValue({ crab: { xp: 0 } });
-            expect(await calcExpEarned()).toBe(10);
+            expect(await calcTotalExpEarned()).toBe(10);
             expect(chrome.storage.local.set).toHaveBeenCalled();
         })
     })

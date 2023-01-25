@@ -1,11 +1,11 @@
-import { fetchLevel, fetchFocusTime, fetchXp } from "../Common/storage-utilities.js";
+import { fetchLevel, fetchTotalFocusTime, fetchXp } from "../Common/storage-utilities.js";
 import { SESSION_TIME_MINUTES, MINUTE_TO_MS } from "../Common/utilities.js";
 import { Crab } from "../Types/crab";
 
 
-export async function calcExpEarned() {
+export async function calcTotalExpEarned() {
     let level = await fetchLevel();
-    let percentTimeFocused = await calcPercentTimeFocused();
+    let percentTimeFocused = await calcTotalPercentTimeFocused();
     const monkeyTypeXpModel = (49 * (level - 1) + 100);
     let xpEarned = monkeyTypeXpModel * percentTimeFocused as number;
     if(xpEarned < 0) {
@@ -15,8 +15,8 @@ export async function calcExpEarned() {
     return Math.round(xpEarned);
 }
 
-export async function calcPercentTimeFocused() {
-    let focusedTime = await fetchFocusTime();
+export async function calcTotalPercentTimeFocused() {
+    let focusedTime = await fetchTotalFocusTime();
     let totalTime = SESSION_TIME_MINUTES * MINUTE_TO_MS;
     let percentTimeFocused = (focusedTime / totalTime);
     return percentTimeFocused;

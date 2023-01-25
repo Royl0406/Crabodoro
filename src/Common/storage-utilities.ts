@@ -35,9 +35,9 @@ export async function fetchLevel() {
     return crab.level;
 }
 
-export async function fetchFocusTime() {
-    let result = await chrome.storage.local.get(['TOTAL_TIME_MS', 'totalDistractedTime']);
-    let focusedTime = result.TOTAL_TIME_MS - result.totalDistractedTime;
+export async function fetchTotalFocusTime() {
+    let result = await chrome.storage.local.get(['TOTAL_TIME_MS', 'sessionDistractedTime']);
+    let focusedTime = result.TOTAL_TIME_MS - result.sessionDistractedTime;
     return focusedTime;
 }
 
