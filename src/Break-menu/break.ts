@@ -1,4 +1,4 @@
-import { calcRemainingTime, displayRemainingTime, MINUTE_TO_MS, navToPomodoro } from "../Common/utilities.js";
+import { calcSessionRemainingTime, displayTime, MINUTE_TO_MS, navToPomodoro } from "../Common/utilities.js";
 import { calcRemainingBreakTime, fetchRemainingSessions } from "../Common/storage-utilities.js";
 
 window.onload = async () => {
@@ -15,7 +15,7 @@ window.onload = async () => {
             clearInterval(intervalId);
         }
         else {
-            displayRemainingTime(remainingTimeDisplay, remainingTimeMs);
+            displayTime(remainingTimeDisplay, remainingTimeMs);
         }
     }, 100);
 

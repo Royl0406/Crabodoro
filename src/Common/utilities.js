@@ -9,13 +9,13 @@ export function calcSeconds(remainingTime) {
   return (remainingTime / 1000) % 60;
 }
 
-export function calcRemainingTime(startTime, TOTAL_TIME_MS) {
+export function calcSessionRemainingTime(startTime, sessionTimeMs) {
   const elapsedTime = (new Date()).getTime() - startTime;
-  return TOTAL_TIME_MS - elapsedTime;
+  return sessionTimeMs - elapsedTime;
 }
 
-export function displayRemainingTime(htmlElement, remainingTime) {
-  htmlElement.textContent = Math.floor(calcMinutes(remainingTime)) + ' : ' + Math.round(calcSeconds(remainingTime));
+export function displayTime(htmlElement, timeMs) {
+  htmlElement.textContent = Math.floor(calcMinutes(timeMs)) + ' : ' + Math.round(calcSeconds(timeMs));
 }
 
 export const SESSION_TIME_MINUTES = 0.2;

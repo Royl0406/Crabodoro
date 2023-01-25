@@ -106,16 +106,16 @@ function addTabListeners() {
 async function startGame() {
    addTabListeners();
    
-   const TOTAL_TIME_MS = SESSION_TIME_MINUTES * MINUTE_TO_MS;
+   const sessionTimeMs = SESSION_TIME_MINUTES * MINUTE_TO_MS;
 
    let totCoinsInGame = 0;
-   let totDistractedTime = 0;
+   let totalDistractedTime = 0;
    await startSession();
 
    await chrome.storage.local.set({ 
-      TOTAL_TIME_MS,
+      sessionTimeMs,
       totCoinsInGame,
-      totDistractedTime
+      totalDistractedTime
    });
 }
 

@@ -1,5 +1,5 @@
 import { addToTotGameCoins, decrementRemainingSessions } from "../Common/storage-utilities.js";
-import { navToBreak, navToStats, displayRemainingTime, calcRemainingTime } from "../Common/utilities.js";
+import { navToBreak, navToStats, displayTime, calcSessionRemainingTime } from "../Common/utilities.js";
 
 
 const MAX_COIN = 200;
@@ -11,14 +11,14 @@ function startUpdateLoop() {
   const divRemainingTime = document.getElementById('remaining-time');
 
     setInterval(() => {
-        chrome.storage.local.get(['startTime', 'TOTAL_TIME_MS', 'remainingTime', 'sessionDistractedTime'], async function (result) {
-            let remainingTimeMs = calcRemainingTime(result.startTime, result.TOTAL_TIME_MS);
+        chrome.storage.local.get(['startTime', 'sessionTimeMs', 'remainingTime', 'sessionDistractedTime'], async function (result) {
+            let remainingTimeMs = calcSessionRemainingTime(result.startTime, result.sessionTimeMs);
             if(remainingTimeMs < 0) {
                 await finishPomodoro();
             }
-            displayRemainingTime(divRemainingTime, remainingTimeMs);
-            displayCoinCount(calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.sessionDistractedTime));
-            coinsEarnedThisSession = calcCoinEarned(result.TOTAL_TIME_MS, remainingTimeMs, result.sessionDistractedTime);
+            displayTime(divRemainingTime, remainingTimeMs);
+            displayCoinCount(calcSessionCoinEarned(result.sessionTimeMs, remainingTimeMs, result.sessionDistractedTime));
+            coinsEarnedThisSession = calcSessionCoinEarned(result.sessionTimeMs, remainingTimeMs, result.sessionDistractedTime);
         });
     }, 100);
 }
@@ -52,11 +52,11 @@ function displayCoinCount(coinCount) {
   divCoinCount.textContent = 'Coin: ' + Math.round(coinCount);
 }
 
-function calcCoinEarned(TOTAL_TIME_MS, remainingTimeMs, sessionDistractedTime) {
-  const coinRate = MAX_COIN / TOTAL_TIME_MS;
+function calcSessionCoinEarned(sessionTimeMs, remainingTimeMs, sessionDistractedTime) {
+  const coinRate = MAX_COIN / sessionTimeMs;
   const coinDeductRate = coinRate / 2;
 
-  const elapsedTime = TOTAL_TIME_MS - remainingTimeMs;
+  const elapsedTime = sessionTimeMs - remainingTimeMs;
   const focusedTime = elapsedTime - sessionDistractedTime;
 
   const coinsEarned = coinRate * focusedTime;

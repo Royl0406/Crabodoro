@@ -1,5 +1,5 @@
 import { Crab } from "../Types";
-import { calcRemainingTime, MINUTE_TO_MS } from "./utilities.js";
+import { calcSessionRemainingTime, MINUTE_TO_MS } from "./utilities.js";
 
 //Checks if the url matches the regex pattern of urls stored in the blocklist
 export function isUrlBlocked(inputUrl, blockedList) {
@@ -36,8 +36,8 @@ export async function fetchLevel() {
 }
 
 export async function fetchTotalFocusTime() {
-    let result = await chrome.storage.local.get(['TOTAL_TIME_MS', 'totalDistractedTime']);
-    let focusedTime = result.TOTAL_TIME_MS - result.totalDistractedTime;
+    let result = await chrome.storage.local.get(['sessionTimeMs', 'totalDistractedTime']);
+    let focusedTime = result.sessionTimeMs - result.totalDistractedTime;
     return focusedTime;
 }
 
@@ -131,7 +131,7 @@ export async function calcRemainingBreakTime(): Promise<number> {
     if(startTime === null) return 0;
     let totalBreakMin = 1;
     let totalBreakTimeMs = totalBreakMin * MINUTE_TO_MS;
-    return calcRemainingTime(startTime, totalBreakTimeMs);
+    return calcSessionRemainingTime(startTime, totalBreakTimeMs);
 }
 
 
