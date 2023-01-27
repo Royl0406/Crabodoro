@@ -8,8 +8,8 @@ chrome.runtime.onInstalled.addListener(function (e) {
    if(e.reason === chrome.runtime.OnInstalledReason.INSTALL) {
       chrome.storage.local.set({isOnboardingDone: false})
       
-      let blocked = [];
-      chrome.storage.local.set({ blocked })
+      let blockedList = [];
+      chrome.storage.local.set({ blockedList })
 
       chrome.tabs.create({
          url: "./dist/Settings/onBoarding.html"
@@ -18,8 +18,8 @@ chrome.runtime.onInstalled.addListener(function (e) {
 })
 
 async function fetchBlockedList() {
-   let blockedList = await chrome.storage.local.get(["blocked"]);
-   return blockedList.blocked;
+   let result = await chrome.storage.local.get(["blockedList"]);
+   return result.blockedList;
 }
 
 async function isUrlDistracting(url) {
