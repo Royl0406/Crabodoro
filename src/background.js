@@ -48,7 +48,9 @@ async function urlChangeHandler(url, tabId) {
    let isDistracted = false;
    let remainingBreakTimeMs = await calcRemainingBreakTime();
    let { isDistracted: prevIsDistracted } = await chrome.storage.local.get(['isDistracted']);
+   
    if (await isUrlDistracting(url) && remainingBreakTimeMs <= 0) {
+      console.log("pog");
       showScreenBlocker(tabId);
       isDistracted = true;
    }
