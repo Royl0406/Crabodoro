@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Royl0406/tab_checker#readme",
   "devDependencies": {
+    "@sentry/types": "7.34.0",
     "@types/chrome": "^0.0.195",
     "@types/jest": "^27.5.2",
     "copyfiles": "^2.4.1",

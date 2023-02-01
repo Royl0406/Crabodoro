@@ -1,8 +1,22 @@
 //Tab Detector
 //background.js
+import "./sentry.js";
 import {calcRemainingBreakTime, isUrlBlocked} from "./Common/storage-utilities.js";
 import {SESSION_TIME_MINUTES, MAX_COIN, MINUTE_TO_MS} from "./Common/utilities.js";
 
+console.log(Object.keys(Sentry));
+console.log(Sentry.init);
+/*Sentry.init({
+   dsn: "https://7b5103208c5a4e8bb24932177645d34e@o1294946.ingest.sentry.io/4504602726957056",
+   //integrations: [new BrowserTracing()],
+    
+   // Set tracesSampleRate to 1.0 to capture 100%
+   // of transactions for performance monitoring.
+   // We recommend adjusting this value in production
+   tracesSampleRate: 1.0,
+});*/
+
+//myUndefinedFunction();
 
 chrome.runtime.onInstalled.addListener(function (e) {
    if(e.reason === chrome.runtime.OnInstalledReason.INSTALL) {
