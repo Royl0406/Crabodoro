@@ -81,9 +81,7 @@ export async function addToBank(coin) {
 
 export async function addToTotGameCoins(coin) {
     let totCoinsInGame = await fetchGameCoins();
-    console.log("before add: " + totCoinsInGame);
     totCoinsInGame = totCoinsInGame + coin;
-    console.log("after: " + totCoinsInGame);
     await chrome.storage.local.set({ totCoinsInGame });
 }
 
