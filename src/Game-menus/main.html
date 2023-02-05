@@ -4,13 +4,10 @@
 <head>
   <link rel="stylesheet" href="../Common/theme.css">
   <style>
-    .button-box {
-      background-color: #50F64D;
-      cursor: pointer;
-    }
-
-    .button-box:hover {
-      background-color: #4ef34b;
+    .pomodoro-box {
+      background-color: #BA4949;
+      opacity: 0.77;
+      align-content: center;
     }
 
     /*absolute positions the button to the top right */
@@ -19,19 +16,39 @@
       right: 0;
     }
 
+    .btn-start {
+      display: block;
+      margin: 0 auto;
+      width: 95px;
+      height: 29px;
+      font-size: 12px;
+      font-weight: bold;
+      background-color: #EBEBEB;
+      color: #BA4949;
+      border: 0;
+      margin-bottom: 32px; 
+      cursor: pointer;
+    }
+
     body {
       background-color: rgba(235, 138, 24, 0.36);
       width: 529px;
       height: 448px;
     }
 
-    .gamemode-name {
+    .title {
       color: white;
       text-align: center;
-      padding-top: 15px;
+      padding-top: 8px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 28px;
+      font-weight: bold;
       /*edit later*/
       /*doesn't look as good*/
-      -webkit-text-stroke: 0.4px black;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: #888282;
+      margin-left: 12px;
+      margin-right: 12px;
     }
 
     .game-info {
@@ -39,8 +56,8 @@
       font-family: Georgia, 'Times New Roman', Times, serif;
       font-weight: bold;
       color: white;
-      margin-left: 5%;
-      margin-right: 5%;
+      margin-left: 12px;
+      margin-right: 12px;
     }
 
     .gamemode-boxes {
@@ -50,6 +67,25 @@
 
     .small-padding {
       padding: 10px;
+    }
+
+    .game-time {
+      color:#FFFBFB;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 32px; 
+      font-weight: bold;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .break-time {
+      color:#FFFBFB;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 12px; 
+      font-weight: bold;
+      text-align: center;
+      margin-top: 2px;
+      margin-bottom: 80px;
     }
 
     div.row-header {
@@ -65,24 +101,18 @@
     <button id="crab-space" class="button-text navigation-button small-padding">Crab Space</button>
   </div>
   <div class="gamemode-boxes">
-    <div class="button-box" id="card-unrated">
+    <div class="pomodoro-box" id="card-unrated">
       <div class="head">
-        <h1 class="gamemode-name">Unrated</h1>
+        <h1 class="title">Pomodoro</h1>
       </div>
       <div>
-        <img src="../../Assets/chicken.png" alt="robot chicken" />
+        <div class="game-time">40:00</div>
       </div>
-
-      <div class="game-info">
-        <div class="row">
-          <div class="column">Study time:</div>
-          <div class="column">40 min</div>
-        </div>
-
-        <div class="row">
-          <div class="column">Game time:</div>
-          <div class="column">10-15 min</div>
-        </div>
+      <div>
+        <div class="break-time">Break: 5 min</div>
+      </div>
+      <div>
+      <button id="btn-start" class="btn-start center">Start</button>
       </div>
     </div>
   </div>
