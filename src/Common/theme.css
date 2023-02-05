@@ -1,10 +1,7 @@
 .navigation-button {
     background-color: #E33737;
-    opacity: 0.6;
-}
-
-.navigation-button:hover {
-    opacity: 0.8;
+    opacity: 0.85;
+    cursor: pointer;
 }
 
 .button-text {
