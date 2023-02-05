@@ -47,3 +47,9 @@
     width: fit-content;
     height: fit-content;
 }
+
+.sub-heading {
+    color:#FFFBFB;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}

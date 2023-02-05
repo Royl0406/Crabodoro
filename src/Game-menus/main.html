@@ -64,6 +64,20 @@
       margin-right: 12px;
     }
 
+    .pomodoro-settings {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3px;
+    }
+
+    .session-settings {
+      width:fit-content;
+      margin-left: 10px;
+      margin-right: 5px;
+      background-color: #dad5d5;
+      border-color: #a09b9b;
+    }
+
     .gamemode-boxes {
       display: flex;
       justify-content: center;
@@ -97,12 +111,16 @@
     }
   </style>
   <script src="../Common/utilities.js" type="module"></script>
-  <script src="button.js" type="module"></script>
+  <script src="main.js" type="module"></script>
 </head>
 
 <body>
   <div class="row row-header">
     <button id="crab-space" class="button-text navigation-button small-padding">Crab Space</button>
+  </div>
+  <div class="pomodoro-settings">
+    <div clas="sub-heading">Est Pomodoros:</div>
+    <input id="session-input" class="session-settings" type="number" min="1" max="20"></input>
   </div>
   <div class="gamemode-boxes">
     <div class="pomodoro-box" id="card-unrated">
