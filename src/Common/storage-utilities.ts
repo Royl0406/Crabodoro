@@ -87,6 +87,7 @@ export async function addToTotGameCoins(coin) {
 
 export async function fetchGameCoins() {
     let result = await chrome.storage.local.get(['totCoinsInGame']);
+    await addToBank(result.totCoinsInGame);
     return result.totCoinsInGame as number;
 }
 
