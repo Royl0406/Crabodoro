@@ -53,3 +53,8 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
 }
+
+.outer-box {
+    display: flex;
+    justify-content: center;
+  }
