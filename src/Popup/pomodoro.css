@@ -1,15 +1,7 @@
 .button-box {
     background-color: #51A388;
-    cursor: pointer;
-}
-
-.gamemode-name {
-    color: white;
-    text-align: center;
-    padding-top: 15px;
-    /*edit later*/
-    /*doesn't look as good*/
-    -webkit-text-stroke: 0.4px black;
+    opacity: 0.77;
+    align-content: center;
 }
 
 .game-info {

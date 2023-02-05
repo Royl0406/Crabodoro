@@ -61,3 +61,8 @@ export async function navToBreak() {
   await chrome.storage.local.set({ breakStartTime });
   changePopupLocation(location);
 }
+
+export function navToSettings() {
+  const location = "/dist/Settings/settings.html";
+  changePopupLocation(location)
+}

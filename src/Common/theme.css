@@ -1,3 +1,9 @@
+body {
+    background-color: rgba(235, 138, 24, 0.36);
+    width: 529px;
+    height: 448px;
+  }
+
 .navigation-button {
     background-color: #E33737;
     opacity: 0.85;
@@ -57,4 +63,28 @@
 .outer-box {
     display: flex;
     justify-content: center;
+  }
+
+.title {
+    color: white;
+    text-align: center;
+    padding-top: 8px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 28px;
+    font-weight: bold;
+    /*edit later*/
+    /*doesn't look as good*/
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #888282;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.game-time {
+    color:#FFFBFB;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 32px; 
+    font-weight: bold;
+    text-align: center;
+    margin-top: 80px;
   }

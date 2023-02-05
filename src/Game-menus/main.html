@@ -34,27 +34,6 @@
       filter: brightness(90%);
     }
 
-    body {
-      background-color: rgba(235, 138, 24, 0.36);
-      width: 529px;
-      height: 448px;
-    }
-
-    .title {
-      color: white;
-      text-align: center;
-      padding-top: 8px;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      font-size: 28px;
-      font-weight: bold;
-      /*edit later*/
-      /*doesn't look as good*/
-      -webkit-text-stroke-width: 1px;
-      -webkit-text-stroke-color: #888282;
-      margin-left: 12px;
-      margin-right: 12px;
-    }
-
     .game-info {
       font-size: 14px;
       font-family: Georgia, 'Times New Roman', Times, serif;
@@ -83,15 +62,6 @@
       padding: 10px;
     }
 
-    .game-time {
-      color:#FFFBFB;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      font-size: 32px; 
-      font-weight: bold;
-      text-align: center;
-      margin-top: 80px;
-    }
-
     .break-time {
       color:#FFFBFB;
       font-family: Georgia, 'Times New Roman', Times, serif;
@@ -100,6 +70,12 @@
       text-align: center;
       margin-top: 2px;
       margin-bottom: 80px;
+    }
+
+    .settings {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
     }
 
     div.row-header {
@@ -112,6 +88,7 @@
 
 <body>
   <div class="row row-header">
+    <button id="btn-settings"  class="settings"> <img src="../../Assets/cog-empty.png" width="40px" height="40px"></img></button>
     <button id="crab-space" class="button-text navigation-button small-padding">Crab Space</button>
   </div>
   <div class="pomodoro-settings">

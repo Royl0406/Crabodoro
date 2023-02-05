@@ -1,10 +1,11 @@
 import { storeTotSessions } from '../Common/storage-utilities.js';
-import { navToPomodoro, navToCrabSpace } from '../Common/utilities.js'
+import { navToPomodoro, navToCrabSpace, navToSettings } from '../Common/utilities.js'
 
 window.onload = () => {
   var myButton = document.getElementById('btn-start');
   var crabSpaceBtn = document.getElementById("crab-space");
   var sessionInput = document.getElementById("session-input");
+  var settingsBtn = document.getElementById("btn-settings");
 
   myButton.onclick = async () => {
    
@@ -17,6 +18,10 @@ window.onload = () => {
 
   crabSpaceBtn.onclick = () => {
     navToCrabSpace();
+  }
+
+  settingsBtn.onclick = () => {
+    navToSettings();
   }
 }
 
