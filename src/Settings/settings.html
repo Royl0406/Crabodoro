@@ -6,26 +6,37 @@
     <link rel="stylesheet" href="./settings.css">
     <style>
         body {
-            background-color: rgba(235, 138, 24, 0.36);
+            display: flex;
+            width: 960px;
+            margin: 0 auto;
+            justify-content: center;
             font-family: sans-serif;
+            font-weight: bold;
+        }
+
+        .margin-top {
+            margin-top: 50px;
         }
     </style>
     <script src="settings.js" type="module"></script>
 </head>
 
 <body>
-    <div>
-        <button id="default-btn" class="button-text default-button-box">Default</button>
-        <button id="custom-btn" class="button-text custom-button-box">Custom</button>
+    <div class="center-text margin-top">
+        <div>
+            <button id="default-btn" class="button-text default-button-box">Default</button>
+            <button id="custom-btn" class="button-text custom-button-box">Custom</button>
+        </div>
+    
+        <div class="center">
+            <h1 id="block-mode">Choose a Blocklist</h1>
+            <h3 style="font-weight: normal">During study sessions, you may not visit websites on the blocklist</h3>
+            <input id="url-input" placeholder="Please enter the URL of the website here" type="text" class="text-line hidden">
+            <ul id="blocklist"></ul>
+            <button id="save" class="button-text navigation-button" style="margin-top: 50px">Done</button>
+        </div>
     </div>
-
-    <div class="center">
-        <h1 id="block-mode">Choose a Blocklist</h1>
-        <h3 style="font-weight: normal">During study sessions, you may not visit websites on the blocklist</h3>
-        <input id="url-input" placeholder="Please enter the URL of the website here" type="text" class="text-line hidden">
-        <ul id="blocklist"></ul>
-        <button id="save" class="button-text navigation-button" style="margin-top: 50px">Done</button>
-    </div>
+    
 </body>
 
 </html>

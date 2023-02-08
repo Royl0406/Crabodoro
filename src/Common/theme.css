@@ -51,6 +51,10 @@ body {
     justify-content: center;
 }
 
+.center-text {
+    text-align: center;
+}
+
 .img-button {
     width: fit-content;
     height: fit-content;

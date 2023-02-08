@@ -5,11 +5,9 @@
     <style>
         body {
             display: flex;
-            flex-direction: column;
+            width: 960px;
+            margin: 0 auto;
             justify-content: center;
-            align-items: center;
-
-            background-color: rgba(235, 138, 24, 0.36);
         }
 
         * {
@@ -21,18 +19,26 @@
     <link rel="stylesheet" href="../Common/theme.css">
 </head>
 
-<body>
-    <h1><img src="../../Assets/stats-crab.png" alt="logo of Crabodoro"></h1>
-
+<body >
     <div>
-        <span>Name your crab:</span>
-    </div>
+        <h1><img src="../../Assets/stats-crab.png" alt="logo of Crabodoro"></h1>
 
-    <div>
-        <input id="name" type="text">
-    </div>
+        <div class="center-text">
+            <span>Name your crab:</span>
+        </div>
+    
+        <div class="center-text">
+            <input id="name" type="text">
+        </div>
 
-    <btn id="btn-cont" class="button-text navigation-button">Continue</btn>
+        <div class="center-text">
+            <btn id="btn-cont" class="button-text navigation-button">Continue</btn>
+        </div>
+    
+        
+    </div>
+   
+
 </body>
 
 </html>
