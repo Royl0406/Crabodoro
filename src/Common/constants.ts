@@ -4,5 +4,6 @@ export const DEFAULT_BLOCKEDLIST = [
     "https://www.instagram.com",
     "https://www.facebook.com",
     "https://www.twitter.com",
-    "https://www.netflx.com"
+    "https://www.netflix.com",
+    "httpd://www.reddit.com"
 ];
