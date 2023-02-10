@@ -17,8 +17,8 @@ function startUpdateLoop() {
                 await finishPomodoro();
             }
             displayTime(divRemainingTime, remainingTimeMs);
-            displayCoinCount(calcSessionCoinEarned(result.sessionTimeMs, remainingTimeMs, result.sessionDistractedTime));
-            coinsEarnedThisSession = calcSessionCoinEarned(result.sessionTimeMs, remainingTimeMs, result.sessionDistractedTime);
+            displayCoinCount(calcRunningSessionCoinEarned(result.sessionTimeMs, remainingTimeMs, result.sessionDistractedTime));
+            coinsEarnedThisSession = calcRunningSessionCoinEarned(result.sessionTimeMs, remainingTimeMs, result.sessionDistractedTime);
         });
     }, 100);
 }
@@ -27,7 +27,7 @@ async function finishPomodoro() {
   
   let remainingSessions = await decrementRemainingSessions();
 
-  let result = chrome.storage.local.get(['sessionDistractedTime', 'totalDistractedTime']);
+  let result = await chrome.storage.local.get(['sessionDistractedTime', 'totalDistractedTime']);
   if(result.sessionDistractedTime === 0) {
     coinsEarnedThisSession = MAX_COIN;
   }
@@ -53,7 +53,7 @@ function displayCoinCount(coinCount) {
   divCoinCount.textContent = 'Coin: ' + Math.round(coinCount);
 }
 
-function calcSessionCoinEarned(sessionTimeMs, remainingTimeMs, sessionDistractedTime) {
+function calcRunningSessionCoinEarned(sessionTimeMs, remainingTimeMs, sessionDistractedTime) {
   const coinRate = MAX_COIN / sessionTimeMs;
   const coinDeductRate = coinRate / 2;
 

@@ -5,10 +5,23 @@
   <link rel="stylesheet" href="../Common/theme.css">
   <link rel="stylesheet" href="./break.css">
   <style>
-    body {
-      background-color: rgba(235, 138, 24, 0.36);
-      width: 529px;
-      height: 448px;
+    .remaining-sessions {
+      color:#FFFBFB;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 12px; 
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 80px;
+    }
+    
+    .navigation-button {
+      margin-bottom: 30px;
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+    .navigation-button:hover {
+      filter: brightness(85%);
     }
   </style>
   <script src="break.js" type="module"></script>
@@ -16,22 +29,19 @@
 </head>
 
 <body>
-  <div class="card-row">
-    <div class="button-box" id="card-unrated">
+  <div class="outer-box">
+    <div class="break-box">
       <div class="head">
-        <h1 class="gamemode-name">Break</h1>
+        <h1 class="title">Break</h1>
       </div>
-
-      <div class="game-info">
-        <div class="row">
-          <div class="column" id="remaining-break-time">5:00</div>
-        </div>
-        <div class="row">
-          <div class="column">Sessions remaining: <span id="remaining-sessions">94</span></div>
-        </div>
-        <div class="row">
-          <button id="btn-skip" class="button-text navigation-button">Skip Break</button>
-        </div>
+      <div>
+        <div class="game-time" id="remaining-break-time">5:00</div>
+      </div>
+      <div>
+        <div class="remaining-sessions">Sessions remaining: <span id="remaining-sessions">4</span></div>
+      </div>
+      <div>
+        <button id="btn-skip" class="button-text navigation-button center">Skip Break</button>
       </div>
     </div>
   </div>

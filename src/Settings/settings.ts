@@ -8,16 +8,28 @@ document.addEventListener("DOMContentLoaded", function () {
     let urlInputElement = document.getElementById("url-input") as HTMLInputElement;
     let currentModeElement = document.getElementById("block-mode");
     let blockedListElement = document.getElementById("blocklist")
+    let defaultBlockedListELement = document.getElementById("default-blocklist");
+
+    let defaultBlockedListArray = DEFAULT_BLOCKEDLIST as Array<string>;
+    defaultBlockedListELement.style.display = "none";
+
+    for(let i = 0; i < defaultBlockedListArray.length; i++) {
+        let listItem = document.createElement("li");
+        listItem.appendChild(document.createTextNode(defaultBlockedListArray[i]));
+        defaultBlockedListELement.appendChild(listItem);
+    }
 
     btnDefault.addEventListener("click", function () {
         currentModeElement.innerHTML = "Default Blocklist";
         blockedListElement.style.display = "none";
+        defaultBlockedListELement.style.display = "block";
         urlInputElement.style.display = "none";
     })
 
     btnCustom.addEventListener("click", function () {
         currentModeElement.innerHTML = "My Blocklist";
         blockedListElement.style.display = "block";
+        defaultBlockedListELement.style.display = "none";
         urlInputElement.style.display = "block";
     })
 
