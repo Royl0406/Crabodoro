@@ -1,6 +1,6 @@
-import { navToShop, navToMainMenu } from '../Common/utilities.js'
-import {decrementFoodCount, fetchFoodCount, fetchLevel, fetchName, fetchXp} from '../Common/storage-utilities.js';
-import { calcLevel, calcLevelUpXp, calcTotalXpForLevel } from '../Stats-Screen/xp-utilities.js';
+import { navToShop, navToMainMenu } from '../Common/utilities'
+import {decrementFoodCount, fetchFoodCount, fetchLevel, fetchName, fetchXp} from '../Common/storage-utilities';
+import { calcLevel, calcLevelUpXp, calcTotalXpForLevel } from '../Stats-Screen/xp-utilities';
 
 document.addEventListener("DOMContentLoaded", async () => {
     const BTN_MAIN = document.getElementById("main-menu");

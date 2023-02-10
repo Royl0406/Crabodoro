@@ -1,6 +1,6 @@
-import { calcMinutes, calcSeconds, navToMainMenu, MAX_COIN } from "../Common/utilities.js";
-import { calcTotalExpEarned } from "./xp-utilities.js";
-import { fetchTotalFocusTime, addToBank, fetchGameCoins } from "../Common/storage-utilities.js";
+import { calcMinutes, calcSeconds, navToMainMenu, MAX_COIN } from "../Common/utilities";
+import { calcTotalExpEarned } from "./xp-utilities";
+import { fetchTotalFocusTime, addToBank, fetchGameCoins } from "../Common/storage-utilities";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const COIN_EARNED = document.getElementById("total-coin") as HTMLElement;

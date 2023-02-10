@@ -1,5 +1,5 @@
-import { navToCrabSpace } from '../Common/utilities.js'
-import { fetchBankCoins, addToBank, fetchFoodCount, incrementFoodCount } from '../Common/storage-utilities.js'
+import { navToCrabSpace } from '../Common/utilities'
+import { fetchBankCoins, addToBank, fetchFoodCount, incrementFoodCount } from '../Common/storage-utilities'
 
 interface ShopItem {
     name: string;

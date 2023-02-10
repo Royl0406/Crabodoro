@@ -1,4 +1,4 @@
-import { DEFAULT_BLOCKEDLIST } from "../Common/constants.js";
+import { DEFAULT_BLOCKEDLIST } from "../Common/constants";
 
 document.addEventListener("DOMContentLoaded", function () {
     const btnDefault = document.getElementById("default-btn");

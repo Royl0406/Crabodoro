@@ -1,5 +1,5 @@
-import { addToTotGameCoins, decrementRemainingSessions, incrementSessionsElapsed } from "../Common/storage-utilities.js";
-import { navToBreak, navToStats, displayTime, calcSessionRemainingTime } from "../Common/utilities.js";
+import { addToTotGameCoins, decrementRemainingSessions, incrementSessionsElapsed } from "../Common/storage-utilities";
+import { navToBreak, navToStats, displayTime, calcSessionRemainingTime } from "../Common/utilities";
 
 
 const MAX_COIN = 200;
