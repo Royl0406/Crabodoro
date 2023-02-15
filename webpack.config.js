@@ -24,6 +24,17 @@ module.exports = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.html$/i,
+        use: "html-loader"
+      },
+      {
+        test: /\.(png|jpg)$/i,
+        type: "asset/resource",
+        generator: {
+            filename: "images/[name]-[hash][ext]"
+        }
+      }
     ],
   },
   resolve: {

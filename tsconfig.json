@@ -1,5 +1,8 @@
 {
-  "include": ["src"],
+  "include": [
+    "src",
+    "Assets/**/*.ts"
+  ], 
   "exclude": ["src/**/*.test.js"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
