@@ -60,5 +60,9 @@
       "json",
       "lcov"
     ]
+  },
+  "dependencies": {
+    "@sentry/browser": "^7.37.2",
+    "@sentry/tracing": "^7.37.2"
   }
 }

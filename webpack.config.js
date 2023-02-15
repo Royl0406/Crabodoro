@@ -5,7 +5,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    background: "./src/background.js",
+    background: "./src/background.ts",
     onBoarding: "./src/Settings/onBoarding.ts",
     main: "./src/Game-menus/main.js",
     crabSpace: "./src/Crab-Space/crabSpace.ts",
