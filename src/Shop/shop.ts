@@ -13,10 +13,10 @@ let inventory: ShopItem[] = [
 ];
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const SHOP_ITEM_HEAD = document.getElementById("shop-item-head");
+    const SHOP_ITEM_HEAD = document.getElementById("shop-item-head") as HTMLElement;
 
-    const COIN_DIV = document.getElementById("coin-display");
-    const FOOD_DIV = document.getElementById("food-display");
+    const COIN_DIV = document.getElementById("coin-display") as HTMLElement;
+    const FOOD_DIV = document.getElementById("food-display") as HTMLElement;
 
     let coinCount = await fetchBankCoins();
     let foodCount = await fetchFoodCount();
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    const BTN_CRABSPACE = document.getElementById("shop-crabSpace");
+    const BTN_CRABSPACE = document.getElementById("shop-crabSpace") as HTMLElement;
 
     BTN_CRABSPACE.addEventListener("click", () => {
         navToCrabSpace();
