@@ -1,8 +1,9 @@
-//Tab Detector
-//background.js
-import {calcRemainingBreakTime, isUrlBlocked} from "./Common/storage-utilities.js";
-import {SESSION_TIME_MINUTES, MAX_COIN, MINUTE_TO_MS} from "./Common/utilities.js";
+//import "./sentry.js";
+import {calcRemainingBreakTime, isUrlBlocked} from "./Common/storage-utilities";
+import {SESSION_TIME_MINUTES, MAX_COIN, MINUTE_TO_MS} from "./Common/utilities";
 
+/*console.log(Object.keys(Sentry));
+console.log(Sentry.init);*/
 
 chrome.runtime.onInstalled.addListener(function (e) {
    if(e.reason === chrome.runtime.OnInstalledReason.INSTALL) {
@@ -12,7 +13,7 @@ chrome.runtime.onInstalled.addListener(function (e) {
       chrome.storage.local.set({ blockedList })
 
       chrome.tabs.create({
-         url: "./dist/Settings/onBoarding.html"
+         url: "onBoarding.html"
       })
    }
 })
@@ -31,14 +32,14 @@ function showScreenBlocker(tabId) {
    //executes script to change background
    chrome.scripting.executeScript({
       target: { tabId: tabId, allFrames: true },
-      files: ['./dist/Screen-Blocker/warning-tab.js']
+      files: ['warning-tab.js']
    });
 }
 
 function removeScreenBlocker(tabId) {
    chrome.scripting.executeScript({
       target: { tabId: tabId, allFrames: true },
-      files: ['./dist/Screen-Blocker/warning-tab-rmv.js']
+      files: ['warning-tab-rmv.js']
    })
 
    //chrome.tabs.reload(tabId);

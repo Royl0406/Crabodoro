@@ -31,38 +31,38 @@ export function changePopupLocation (location) {
 }
 
 export function navToMainMenu() {
-  const location = "/dist/Game-menus/main.html";
+  const location = "main.html";
   changePopupLocation(location);
 }
 
 export function navToShop() {
-  const location = "/dist/Shop/shop.html";
+  const location = "shop.html";
   changePopupLocation(location);
 }
 
 export function navToCrabSpace() {
-  const location = "/dist/Crab-Space/crabSpace.html";
+  const location = "crabSpace.html";
   changePopupLocation(location);
 }
 
 export async function navToPomodoro() {
-  const location = "/dist/Popup/pomodoro.html";
+  const location = "pomodoro.html";
   changePopupLocation(location);
 }
 
 export function navToStats() {
-  const location = "/dist/Stats-Screen/stats.html";
+  const location = "stats.html";
   changePopupLocation(location);
 }
 
 export async function navToBreak() {
-  const location = "/dist/Break-menu/break.html";
+  const location = "break.html";
   let breakStartTime = (new Date()).getTime();
   await chrome.storage.local.set({ breakStartTime });
   changePopupLocation(location);
 }
 
 export function navToSettings() {
-  const location = "/dist/Settings/settings.html";
+  const location = "settings.html";
   changePopupLocation(location)
 }

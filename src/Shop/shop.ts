@@ -1,5 +1,6 @@
-import { navToCrabSpace } from '../Common/utilities.js'
-import { fetchBankCoins, addToBank, fetchFoodCount, incrementFoodCount } from '../Common/storage-utilities.js'
+import { navToCrabSpace } from '../Common/utilities'
+import { fetchBankCoins, addToBank, fetchFoodCount, incrementFoodCount } from '../Common/storage-utilities'
+import pizzaImg from "../../Assets/pizza.png";
 
 interface ShopItem {
     name: string;
@@ -8,7 +9,7 @@ interface ShopItem {
 }
 
 let inventory: ShopItem[] = [
-    { name: "Pizza", cost: 300, img: "../../Assets/pizza.png" }
+    { name: "Pizza", cost: 300, img: pizzaImg }
 ];
 
 document.addEventListener("DOMContentLoaded", async () => {

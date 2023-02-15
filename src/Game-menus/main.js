@@ -1,5 +1,5 @@
-import { storeTotSessions } from '../Common/storage-utilities.js';
-import { navToPomodoro, navToCrabSpace, navToSettings } from '../Common/utilities.js'
+import { storeTotSessions } from '../Common/storage-utilities';
+import { navToPomodoro, navToCrabSpace, navToSettings } from '../Common/utilities'
 
 window.onload = () => {
   var myButton = document.getElementById('btn-start');

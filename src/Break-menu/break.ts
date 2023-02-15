@@ -1,5 +1,5 @@
-import { calcSessionRemainingTime, displayTime, MINUTE_TO_MS, navToPomodoro } from "../Common/utilities.js";
-import { calcRemainingBreakTime, fetchRemainingSessions } from "../Common/storage-utilities.js";
+import { calcSessionRemainingTime, displayTime, MINUTE_TO_MS, navToPomodoro } from "../Common/utilities";
+import { calcRemainingBreakTime, fetchRemainingSessions } from "../Common/storage-utilities";
 
 window.onload = async () => {
     const remainingSessDisplay = document.getElementById("remaining-sessions");
