@@ -1,6 +1,16 @@
-import "../Common/sentry";
+import * as Sentry from "@sentry/browser";
+
 import { storeTotSessions } from "../Common/storage-utilities";
 import { navToPomodoro, navToCrabSpace, navToSettings } from "../Common/utilities";
+
+Sentry.init({
+  dsn: "https://7b5103208c5a4e8bb24932177645d34e@o1294946.ingest.sentry.io/4504602726957056",
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
 
 window.onload = () => {
   var myButton = document.getElementById('btn-start');

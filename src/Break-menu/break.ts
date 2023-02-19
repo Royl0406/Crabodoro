@@ -1,5 +1,16 @@
-import { calcSessionRemainingTime, displayTime, MINUTE_TO_MS, navToPomodoro } from "../Common/utilities";
+import * as Sentry from "@sentry/browser";
+
+import { displayTime, navToPomodoro } from "../Common/utilities";
 import { calcRemainingBreakTime, fetchRemainingSessions } from "../Common/storage-utilities";
+
+Sentry.init({
+    dsn: "https://7b5103208c5a4e8bb24932177645d34e@o1294946.ingest.sentry.io/4504602726957056",
+  
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+  });  
 
 window.onload = async () => {
     const remainingSessDisplay = document.getElementById("remaining-sessions");

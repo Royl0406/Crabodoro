@@ -1,6 +1,18 @@
+import * as Sentry from "@sentry/browser";
+
 import { navToShop, navToMainMenu } from '../Common/utilities'
-import {decrementFoodCount, fetchFoodCount, fetchLevel, fetchName, fetchXp} from '../Common/storage-utilities';
+import { decrementFoodCount, fetchFoodCount, fetchName, fetchXp } from '../Common/storage-utilities';
 import { calcLevel, calcLevelUpXp, calcTotalXpForLevel } from '../Stats-Screen/xp-utilities';
+
+Sentry.init({
+    dsn: "https://7b5103208c5a4e8bb24932177645d34e@o1294946.ingest.sentry.io/4504602726957056",
+  
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+  });  
+
 
 document.addEventListener("DOMContentLoaded", async () => {
     const BTN_MAIN = document.getElementById("main-menu");
