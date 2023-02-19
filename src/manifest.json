@@ -1,7 +1,7 @@
 {
     "name": "Crabodoro",
     "description": "Informs you what tab you're currently on",
-    "version": "1.0",
+    "version": "0.0.1",
     "manifest_version": 3,
     "action": {
         "default_popup": "main.html"
