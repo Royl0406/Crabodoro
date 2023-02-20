@@ -32,7 +32,9 @@ window.onload = () => {
   }
 
   settingsBtn.onclick = () => {
-    navToSettings();
+    chrome.tabs.create({
+      url: "settings.html"
+   })
   }
 }
 
