@@ -5,35 +5,31 @@
     <link rel="stylesheet" href="./stats.css">
     <link rel="stylesheet" href="../Common/theme.css">
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            background-color: #51A388;
-        }
 
         * {
             font-family: sans-serif;
             margin: 10px 0px;
         }
-
     </style>
     <!--include stats.ts-->
 </head>
 
 <body>
-    <h1 class="text">Congrats!</h1>
-    <img src="../../Assets/stats-crab.png" alt="Another cute crab" />
 
-    <div>
-        <div class="text text-size" id="focus-time">Focus Time: </div>
-        <div class="text text-size" id="total-coin">Coins Earned: </div>
-        <div class="text text-size" id="total-xp">XP: </div>
+
+    <div class="outer-box">
+        <div class="button-box">
+            <h1 class="text">Congrats!</h1>
+            <img src="../../Assets/stats-crab.png" alt="Another cute crab" />
+            <div class="text text-size" id="focus-time">Focus Time: </div>
+            <div class="text text-size" id="total-coin">Coins Earned: </div>
+            <div class="text text-size" id="total-xp">XP: </div>
+
+            <button id="nav-main" class="button-text navigation-button">Return to Main Menu</button>
+        </div>
     </div>
 
-    <button id="nav-main" class="button-text navigation-button">Return to Main Menu</button>
+    
 </body>
 
 </html>

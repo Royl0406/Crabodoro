@@ -7,3 +7,9 @@
     font-size: 18px;
     font-weight: bold;
 }
+
+.button-box {
+    background-color: #51A388;
+    opacity: 0.9;
+    align-content: center;
+}
