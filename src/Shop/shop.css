@@ -1,4 +1,9 @@
-.align-center {
+.text {
     align-items: center;
-    justify-content: center;
+    color: #ffff;
+}
+
+.text-size {
+    font-size: 18px;
+    font-weight: bold;
 }
