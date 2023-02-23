@@ -8,8 +8,18 @@
     font-weight: bold;
 }
 
-.button-box {
+.stats-box {
     background-color: #51A388;
     opacity: 0.9;
-    align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.head {
+    display: flex;
+    text-align: center;
 }

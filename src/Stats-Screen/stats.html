@@ -5,10 +5,13 @@
     <link rel="stylesheet" href="./stats.css">
     <link rel="stylesheet" href="../Common/theme.css">
     <style>
-
         * {
             font-family: sans-serif;
-            margin: 10px 0px;
+        }
+
+        .bottom-margin {
+            margin-top: 5px;
+            margin-bottom: 25px;
         }
     </style>
     <!--include stats.ts-->
@@ -18,18 +21,20 @@
 
 
     <div class="outer-box">
-        <div class="button-box">
-            <h1 class="text">Congrats!</h1>
+        <div class="stats-box">
+            <h1 class="title">Congrats!</h1>
+
             <img src="../../Assets/stats-crab.png" alt="Another cute crab" />
             <div class="text text-size" id="focus-time">Focus Time: </div>
             <div class="text text-size" id="total-coin">Coins Earned: </div>
             <div class="text text-size" id="total-xp">XP: </div>
 
-            <button id="nav-main" class="button-text navigation-button">Return to Main Menu</button>
+            <button id="nav-main" class="button-text navigation-button bottom-margin center">Return to Main
+                Menu</button>
         </div>
     </div>
 
-    
+
 </body>
 
 </html>
