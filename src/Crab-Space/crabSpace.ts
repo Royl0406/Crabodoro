@@ -53,12 +53,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     LEVEL.innerHTML += currentLevel;
     FOOD_DISPLAY.innerHTML = totalFood.toString();
 
-    console.log("tot xp: "+ totalXp);
-    console.log("totxpforCurrentLevel: " + totalXpForPrevLevel);
-    console.log(xpOnCurrentLevel);
-    
-    console.log(xpBarPercentage);
-
     XP_BAR.style.width = xpBarPercentage + "%";
 
 })
