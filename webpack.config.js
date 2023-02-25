@@ -1,9 +1,11 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
+const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
 
 module.exports = {
+  devtool: "source-map",
   entry: {
     background: "./src/background.ts",
     onBoarding: "./src/Settings/onBoarding.ts",
@@ -95,6 +97,20 @@ module.exports = {
         { from: "src/manifest.json", to: "manifest.json" },
         { from: "Assets/128.png", to: "128.png"}
       ],
+    }),
+    new SentryWebpackPlugin({
+      org: "roy-liu",
+      project: "crabodoro",
+
+      // Specify the directory containing build artifacts
+      include: "./dist",
+
+      // Auth tokens can be obtained from https://sentry.io/settings/account/api/auth-tokens/
+      // and needs the `project:releases` and `org:read` scopes
+      authToken: "c66bcffb1b5749aa829282b526fd9e2bfa1621b1379249caa0b5732656d0f432",
+
+      // Optionally uncomment the line below to override automatic release name detection
+      // release: process.env.RELEASE,
     })
   ]
 };
