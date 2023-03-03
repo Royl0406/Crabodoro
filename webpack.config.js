@@ -1,11 +1,12 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
+const webpack = require("webpack");
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
 
-module.exports = {
-  devtool: "source-map",
+const config = {
+  devtool: "inline-source-map",
   entry: {
     background: "./src/background.ts",
     onBoarding: "./src/Settings/onBoarding.ts",
@@ -18,7 +19,7 @@ module.exports = {
     shop: "./src/Shop/shop.ts",
     stats: "./src/Stats-Screen/stats.ts",
     break: "./src/Break-menu/break.ts"
-  }, 
+  },
   module: {
     rules: [
       {
@@ -34,7 +35,7 @@ module.exports = {
         test: /\.(png|jpg)$/i,
         type: "asset/resource",
         generator: {
-            filename: "images/[name]-[hash][ext]"
+          filename: "images/[name]-[hash][ext]"
         }
       }
     ],
@@ -95,10 +96,17 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/manifest.json", to: "manifest.json" },
-        { from: "Assets/128.png", to: "128.png"}
+        { from: "Assets/128.png", to: "128.png" }
       ],
-    }),
-    new SentryWebpackPlugin({
+    })
+  ]
+}
+
+
+module.exports = (env, argv) => {
+  const makeSentryPlugin = (dryRun) => {
+    return new SentryWebpackPlugin({
+      dryRun,
       org: "roy-liu",
       project: "crabodoro",
 
@@ -112,5 +120,19 @@ module.exports = {
       // Optionally uncomment the line below to override automatic release name detection
       // release: process.env.RELEASE,
     })
-  ]
+  }
+
+  const definePlugin = new webpack.DefinePlugin({
+    "process.env.NODE_ENV": JSON.stringify(argv.mode || "development")
+  });
+  config.plugins.unshift(definePlugin);
+
+  if (argv.mode === "production") {
+    config.devtool = "source-map";
+    config.plugins.push(makeSentryPlugin(false));
+  }
+  else {
+    config.plugins.push(makeSentryPlugin(true));
+  }
+  return config;
 };
