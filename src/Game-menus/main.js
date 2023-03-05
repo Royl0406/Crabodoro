@@ -4,7 +4,6 @@ import { storeTotSessions } from "../Common/storage-utilities";
 import { navToPomodoro, navToCrabSpace, navToSettings } from "../Common/utilities";
 
 window.onload = () => {
-  throw new Error("beetle");
 
   var myButton = document.getElementById('btn-start');
   var crabSpaceBtn = document.getElementById("crab-space");
