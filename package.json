@@ -41,6 +41,7 @@
     "image-webpack-loader": "^8.1.0",
     "jest": "^27.0.0",
     "jest-chrome": "^0.7.2",
+    "sass": "^1.58.3",
     "ts-jest": "^27.0.0",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
