@@ -1,5 +1,5 @@
 import "./sentry";
-
+import logo from "../Assets/128.png";
 import {calcRemainingBreakTime, isUrlBlocked} from "./Common/storage-utilities";
 import {SESSION_TIME_MINUTES, MAX_COIN, MINUTE_TO_MS} from "./Common/utilities";
 
@@ -102,6 +102,17 @@ function addTabListeners() {
 
    chrome.tabs.onUpdated.addListener(onUpdatedTabListener);
 }
+
+chrome.notifications.create(
+   {
+      type: "basic",
+      iconUrl: logo,
+      title: "bonjour",
+      message: "oui oui",
+      silent: false
+   },
+   () => { }
+ )
 
 async function startGame() {
    addTabListeners();
